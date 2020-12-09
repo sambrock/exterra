@@ -34,9 +34,7 @@ export const GlobalStyle = createGlobalStyle`
     --blue: #01FFD8;
     --dark-blue: #030917;
     --white-opacity: rgba(255,255,255,.65);
-
     --font-sans: 'Chakra', sans-serif;
-
     --fz-xxs: 12px;
     --fz-xs: 13px;
     --fz-sm: 14px;
@@ -72,7 +70,7 @@ export const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    color: var(--black);
+    color: var(--white);
     font-family: var(--font-sans);
     font-size: var(--fz-md);
     line-height: 1.3;
@@ -90,6 +88,27 @@ export const GlobalStyle = createGlobalStyle`
     display: grid;
     grid-template-rows: 1fr auto;
     grid-template-columns: 100%;
+  }
+
+  #map {
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    word-break: break-all;
+    white-space: normal;
+  }
+
+  .title {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-weight: 600;
+  }
+
+  .sub-title {
+    font-size: clamp(.7rem, 2.5vw, .9rem);
+    font-weight: 400;
   }
 
   // Override mapbox font-faily
