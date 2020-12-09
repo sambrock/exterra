@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import apiData from './apidata.json'
-import Map from "./components/Map";
 import { GlobalStyle } from "./styles/GlobalStyle";
+
+import Header from "./components/layout/Header";
+import LaunchList from "./components/LaunchList";
+import Map from "./components/map/Map";
 
 function App() {
   const [upcoming, setUpcoming] = useState('');
@@ -10,7 +13,7 @@ function App() {
   // const getUpcoming = async () => {
   //   const response = await axios.get('https://ll.thespacedevs.com/2.1.0/launch/upcoming?limit=10');
   //   const { data } = response;
- 
+
   //   setUpcoming(data);
   // }
 
@@ -23,7 +26,11 @@ function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <Map launches={apiData.results} />
+      <Header />
+      <LaunchList launches={apiData.results} />
+      <div id="map">
+        <Map launches={apiData.results} />
+      </div>
     </div>
   );
 }
