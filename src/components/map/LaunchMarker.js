@@ -1,62 +1,77 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import CountdownClock from '../CountdownClock';
 import getCountryISO2 from 'country-iso-3-to-2';
+import { getTime } from '../../utils';
 
 const StyledMarkerContainer = styled.div`
-  color: var(--white-opacity);
-  font-size: 11px;
   display: flex;
-  flex-direction: column;
 
-  .launch-title {
-    font-weight: 600;
-    color: var(--white);
-    font-size: 14px;
-  }
-
-  div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-
-    span:nth-child(2) {
-      margin-left: 12px;
+  .launch-flag {
+    margin-right: 12px;
+    img {
+      height: .7rem;
+      margin-right: 3px;
     }
   }
+`;
 
-  .launch-status {
-    background: var(--orange);
-    color: var(--dark-blue);
-    font-weight: 700;
-    padding: 0 3px;
-    text-transform: uppercase;
+const StyledLaunchDetailsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: var(--white-opacity);
+  
+  .launch-name {
+    ${props => props.theme.mixins.heading}
+    font-size: var(--fz-sm);
   }
 
-img {
-  height: .7rem;
-  margin-right: 3px;
-}
+  .launch-time-status {
+    display: flex;
+    align-items: center;
+    margin: 3px 0 0; 
+    
+    .launch-time {
+      .time {
+        ${props => props.theme.mixins.time}
+        width: 88px;
+        display: inline-block;
+      }
+    }
+
+    .launch-status {
+      ${props => props.theme.mixins.status}
+      color: ${props => props.theme.statusColors[props.statusId]};
+      border: 1px solid ${props => props.theme.statusColors[props.statusId]};
+      box-shadow: 0 0 3px ${props => props.theme.statusColors[props.statusId]};
+      text-shadow: 0 0 3px ${props => props.theme.statusColors[props.statusId]};
+    }
+  }
 `;
 
 export default function LaunchMarker({ launch }) {
+  const [time, setTime] = useState('');
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(getTime(launch.net));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [])
+  
   return (
     <StyledMarkerContainer>
-      <div>
-
-        <span className="launch-title">{launch.name}</span>
+      <div className="launch-flag">
+        <img src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${getCountryISO2(launch.pad.location.country_code)}.svg`} alt="" />
       </div>
-      <div>
-        <span>{launch.launch_service_provider.name}</span>
-      </div>
-      <div>
-        <span style={{width: '100%'}}>T- <CountdownClock launchDateTime={launch.net} /></span>
-        <div>
-          <img src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${getCountryISO2(launch.pad.location.country_code)}.svg`} alt="" />
-          <span className="launch-status">{launch.status.abbrev}</span>
+      <StyledLaunchDetailsContainer statusId={launch.status.id}>
+        <span className="launch-name">{launch.name}</span>
+        <span className="launch-service">{launch.launch_service_provider.name}</span>
+        <div className="launch-time-status">
+          <div className="launch-time">{ time.countingDown ? 'T-' : 'T+'} <span className="time">{time.value}</span></div>
+          <div className="launch-status">{launch.status.abbrev}</div>
         </div>
-      </div>
+      </StyledLaunchDetailsContainer>
     </StyledMarkerContainer>
   )
 }
