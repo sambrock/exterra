@@ -1,11 +1,10 @@
-import React, { Fragment } from 'react'
 import ReactMapboxGl, { Marker } from 'react-mapbox-gl';
 import LaunchMarker from './LaunchMarker';
 
 export default function Map({ launches }) {
   const Map = ReactMapboxGl({
     accessToken: 'pk.eyJ1IjoieHNhbWJyb2NrIiwiYSI6ImNraWYxaHplYzBhOTYzMHFrZGVjbmk2azYifQ.YvpDpSvqa6V1SC3EVEEG3A',
-    minZoom: 3
+    minZoom: 2
   });
 
   return (
@@ -19,8 +18,8 @@ export default function Map({ launches }) {
       zoom={[3]}
     >
       {launches.map(launch => (
-        <Marker coordinates={[launch.pad.longitude, launch.pad.latitude]} anchor="center" launch={launch}>
-          <LaunchMarker launch={launch} />
+        <Marker coordinates={[launch.pad.longitude, launch.pad.latitude]} anchor="center" launch={launch} key={launch.id}>
+          <LaunchMarker key={launch.id} launch={launch} />
         </Marker>
       ))}
     </Map>
