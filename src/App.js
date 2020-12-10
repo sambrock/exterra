@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
+import { ThemeProvider } from "styled-components";
 import axios from "axios";
 import apiData from './apidata.json'
-import { GlobalStyle } from "./styles/GlobalStyle";
+import GlobalStyle from "./styles/GlobalStyle";
 
 import Header from "./components/layout/Header";
 import LaunchList from "./components/LaunchList";
 import Map from "./components/map/Map";
+import theme from "./styles/theme";
 
 function App() {
   const [upcoming, setUpcoming] = useState('');
@@ -25,12 +27,14 @@ function App() {
 
   return (
     <div className="App">
-      <GlobalStyle />
-      <Header />
-      <LaunchList launches={apiData.results} />
-      <div id="map">
-        <Map launches={apiData.results} />
-      </div>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Header />
+        <LaunchList launches={apiData.results} />
+        <div id="map">
+          <Map launches={apiData.results} />
+        </div>
+      </ThemeProvider>
     </div>
   );
 }
