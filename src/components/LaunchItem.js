@@ -1,39 +1,19 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { getTime } from '../utils';
+
+import StatusBar from './StatusBar';
+import Time from './Time';
 
 const StyledLaunchItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 0 32px;
   color: var(--white-opacity);
+  cursor: pointer;
+  transition: var(--transition);
 
-  .launch-tag {
-    ${props => props.theme.mixins.tag}
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    grid-column: span 2;
-    color: ${props => props.theme.statusColors[props.statusId]};
-    margin: 0 0 6px;
-    padding: 0 12px;
-
-    span {
-      margin-right: 12px;
-      text-shadow: 0 0 3px ${props => props.theme.statusColors[props.statusId]};
-    }
+  &:hover {
+    color: var(--white);
   }
-
-  .hr {
-    grid-column: span 2;
-    height: 2px;
-    margin: 3px 0 12px;
-    width: 100%;
-    background: ${props => props.theme.statusColors[props.statusId]};
-    box-shadow: 0 0 3px ${props => props.theme.statusColors[props.statusId]};
-    text-shadow: 0 0 3px ${props => props.theme.statusColors[props.statusId]};
-  }
-
   .header {
     display: flex;
     justify-content: space-between;
@@ -42,27 +22,14 @@ const StyledLaunchItemContainer = styled.div`
   }
 
   .launch-name {
-    ${props => props.theme.mixins.heading}
+    /* ${props => props.theme.mixins.heading} */
+    font-weight: 600;
     font-size: clamp(1rem, 2.5vw, 1.2rem);
   }
 
-  .launch-status {
-    ${props => props.theme.mixins.status}
-    box-shadow: 0 0 3px ${props => props.theme.statusColors[props.statusId]};
-    text-shadow: 0 0 3px ${props => props.theme.statusColors[props.statusId]};
-    color: ${props => props.theme.statusColors[props.statusId]};
-    border: 1px solid ${props => props.theme.statusColors[props.statusId]};
-  }
-
   .launch-time {
-    ${props => props.theme.mixins.time}
-    text-align: right;
     width: 100px;
-
-    span {
-      color: var(--white-opacity);
-      margin-right: 6px;
-    }
+    text-align: right;
   }
   
   .launch-details {
@@ -85,35 +52,16 @@ const StyledLaunchItemContainer = styled.div`
     padding: 0 12px;
     margin: 0 0 12px;
   }
-
 `;
 
 export default function LaunchItem({ launch }) {
-  const [time, setTime] = useState('');
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(getTime(launch.net));
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [])
-
   return (
     <StyledLaunchItemContainer statusId={launch.status.id}>
-      <div className="launch-tag">
-        <div>
-          <span>{launch.launch_service_provider.type}</span>
-          <span>{launch.mission ? launch.mission.type : null}</span>
-          <span>{launch.mission && launch.mission.orbit ? launch.mission.orbit.name : null}</span>
-        </div>
-        <div className="launch-status">{launch.status.abbrev}</div>
-      </div>
-      <div className="hr"></div>
+      <StatusBar agency={launch.launch_service_provider} mission={launch.mission} status={launch.status} />
       <div className="header">
         <div className="launch-name title">{launch.name}</div>
         <div>
-          <div className="launch-time"><span>{ time.countingDown ? 'T-' : 'T+'} </span>{time.value}</div>
+          <div className="launch-time"><Time launchTime={launch.net} /></div>
         </div>
       </div>
       <div className="launch-details sub-title">

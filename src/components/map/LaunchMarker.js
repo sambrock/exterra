@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import getCountryISO2 from 'country-iso-3-to-2';
-import { getTime } from '../../utils';
+
+import Time from '../Time';
 
 const StyledMarkerContainer = styled.div`
   display: flex;
@@ -31,11 +31,7 @@ const StyledLaunchDetailsContainer = styled.div`
     margin: 3px 0 0; 
     
     .launch-time {
-      .time {
-        ${props => props.theme.mixins.time}
-        width: 88px;
-        display: inline-block;
-      }
+      width: 88px;
     }
 
     .launch-status {
@@ -49,16 +45,6 @@ const StyledLaunchDetailsContainer = styled.div`
 `;
 
 export default function LaunchMarker({ launch }) {
-  const [time, setTime] = useState('');
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(getTime(launch.net));
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [])
-  
   return (
     <StyledMarkerContainer>
       <div className="launch-flag">
@@ -68,7 +54,7 @@ export default function LaunchMarker({ launch }) {
         <span className="launch-name">{launch.name}</span>
         <span className="launch-service">{launch.launch_service_provider.name}</span>
         <div className="launch-time-status">
-          <div className="launch-time">{ time.countingDown ? 'T-' : 'T+'} <span className="time">{time.value}</span></div>
+          <div className="launch-time"><Time launchTime={launch.net} /></div>
           <div className="launch-status">{launch.status.abbrev}</div>
         </div>
       </StyledLaunchDetailsContainer>

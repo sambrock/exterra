@@ -7,7 +7,7 @@ const StyledLaunchListContainer = styled.div`
   right: 40px;
   z-index: 1;
   white-space: nowrap;
-  max-height: 60%;
+  max-height: calc(100% - 80px);
   overflow-y: scroll;
 `;
 
