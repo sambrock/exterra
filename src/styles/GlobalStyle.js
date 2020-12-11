@@ -35,6 +35,7 @@ const GlobalStyle = createGlobalStyle`
     --blue: #01FFD8;
     --grey: #909090;
     --dark-blue: #030917;
+    --dark-blue-2: #0B1A29;
     --white-opacity: rgba(255,255,255,.65);
     --font-sans: 'Chakra', sans-serif;
     --fz-xxs: 10px;
@@ -81,6 +82,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: var(--font-sans);
     font-size: var(--fz-md);
     line-height: 1.3;
+    background: var(--dark-blue);
     
     @media(max-width: 480px) {
       font-size: var(--fz-lg);
@@ -90,32 +92,31 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  #root {
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: 1fr auto;
-    grid-template-columns: 100%;
-  }
-
-  #map {
-  }
-
   p {
     margin: 0;
     padding: 0;
-    width: 100%;
-    word-break: break-all;
     white-space: normal;
+    word-wrap: break-word;
+    letter-spacing: .5px;
   }
 
-  /* .title {
+  h1, h2 {
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    font-size: clamp(1.3rem, 2.5vw, 2.5rem);
+    letter-spacing: .8px;
+  }
+
+  h2 {
+    font-size: clamp(1rem, 2.5vw, 1rem);
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
     font-weight: 600;
   }
-
-  .sub-title {
-    font-size: clamp(.7rem, 2.5vw, .9rem);
-    font-weight: 400;
-  } */
 
   // Override mapbox font-faily
   .mapboxgl-map {
