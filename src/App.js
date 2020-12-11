@@ -1,42 +1,25 @@
-import { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
-import axios from "axios";
-import apiData from './apidata.json'
 import GlobalStyle from "./styles/GlobalStyle";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Header from "./components/layout/Header";
-import LaunchList from "./components/LaunchList";
-import Map from "./components/map/Map";
 import theme from "./styles/theme";
+import LaunchDetails from "./pages/LaunchDetails";
+import LaunchMap from "./pages/LaunchMap";
 
-function App() {
-  const [upcoming, setUpcoming] = useState('');
-
-  // const getUpcoming = async () => {
-  //   const response = await axios.get('https://ll.thespacedevs.com/2.1.0/launch/upcoming?limit=10');
-  //   const { data } = response;
-
-  //   setUpcoming(data);
-  // }
-
-  // useEffect(() => {
-  //   getUpcoming();
-  // }, [])
-
-  // if(!upcoming) return <div></div>;
-
+export default function App() {
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Header />
-        <LaunchList launches={apiData.results} />
-        <div id="map">
-          <Map launches={apiData.results} />
-        </div>
-      </ThemeProvider>
+      <Router>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Header />
+          <Switch>
+            <Route path="/launch/:id" component={LaunchDetails} />
+            <Route path="/" exact component={LaunchMap} />
+          </Switch>
+        </ThemeProvider>
+      </Router>
     </div>
   );
 }
-
-export default App;
