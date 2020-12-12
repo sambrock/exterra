@@ -31,7 +31,7 @@ const StyledHeader = styled.header`
 
 const Header = () => (
   <StyledHeader>
-    <div className="logo"><img src={Logo} alt="Logo" /></div>
+    <div className="logo"><a href="/"><img src={Logo} alt="Logo" /></a></div>
   </StyledHeader>
 )
 
