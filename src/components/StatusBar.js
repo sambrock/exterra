@@ -9,40 +9,48 @@ const StyledStatusBar = styled.div`
       grid-column: span 2;
       color: ${props => props.theme.statusColors[props.statusId]};
       margin: 0 0 8px;
-      /* padding: 0 12px; */
+      padding: 0 12px;
 
       span {
-        margin-right: 12px;
-        text-shadow: 0 0 3px ${props => props.theme.statusColors[props.statusId]};
+        transition: var(--transition);
+        margin-right: 24px;
+        text-shadow: ${props => props.hover ?  `0 0 3px ${props.theme.statusColors[props.statusId]}` : 'none'};
       }
     }
 
     .hl {
+      ${props => props.theme.mixins.hl}
       grid-column: span 2;
       height: 2px;
       margin: 3px 0 12px;
       width: 100%;
       background: ${props => props.theme.statusColors[props.statusId]};
-      box-shadow: 0 0 3px ${props => props.theme.statusColors[props.statusId]};
-      text-shadow: 0 0 3px ${props => props.theme.statusColors[props.statusId]};
+      transition: var(--transition);
+      box-shadow: ${props => props.hover ?  `0 0 3px ${props.theme.statusColors[props.statusId]}` : 'none'};
     }
 
     .status {
       ${props => props.theme.mixins.status}
-      box-shadow: 0 0 3px ${props => props.theme.statusColors[props.statusId]};
-      text-shadow: 0 0 3px ${props => props.theme.statusColors[props.statusId]};
       color: ${props => props.theme.statusColors[props.statusId]};
       border: 1px solid ${props => props.theme.statusColors[props.statusId]};
+      transition: var(--transition);
+      box-shadow: ${props => props.hover ?  `0 0 3px ${props.theme.statusColors[props.statusId]}` : 'none'};
   }
 `;
 
-const StatusBar = ({agency, mission, status}) => (
-  <StyledStatusBar statusId={status.id}>
+const StatusBar = ({ agency, mission, status, hover }) => (
+  <StyledStatusBar statusId={status.id} hover={hover}>
     <div className="tags">
       <div>
-        <span>{agency.type}</span>
-        <span>{mission ? mission.type : null}</span>
-        <span>{mission && mission.orbit ? mission.orbit.name : null}</span>
+        {agency.type && (
+          <span>{agency.type}</span>
+        )}
+        {mission && (
+          <span>{mission.type}</span>
+        )}
+        {(mission && mission.orbit) && (
+          <span>{mission.orbit.name}</span>
+        )}
       </div>
       <div className="status">{status.abbrev}</div>
     </div>
