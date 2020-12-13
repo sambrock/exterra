@@ -10,6 +10,18 @@ const StyledTime = styled.div`
       color: var(--white-opacity);
       margin-right: 6px;
     }
+
+    .days {
+      margin-left: .5em;
+      font-size: .8em;
+    }
+
+    .skelenton {
+      background: var(--white-opacity);
+      height: 10px;
+      width: 40px;
+      float: right;
+    }
 `;
 
 const Time = ({ launchTime }) => {
@@ -23,10 +35,15 @@ const Time = ({ launchTime }) => {
     return () => clearInterval(interval);
   }, [setTime, launchTime])
 
+  if(!time) return <></>
+
   return (
     <StyledTime>
       <span>{time.countingDown ? 'T-' : 'T+'} </span>
-      <time>{time.value}</time>
+      <time>{time.days === 0 ? time.value : Math.abs(time.days)}</time>
+      {time.days !== 0 && (
+        <span className="days">{time.days !== 1 ? 'DAYS' : 'DAY'}</span>
+      )}
     </StyledTime>
   )
 }
