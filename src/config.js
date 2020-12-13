@@ -9,6 +9,6 @@ module.exports = {
     style: 'mapbox://styles/xsambrock/ckif7859s0lmp1ao74wa6n5c7',
     containerStyle: { height: '100vh', width: '100vw' },
     center: { longitude: -101.073324, latitude: 38.685516 },
-    zoom: { min: 2, default: 3 }
+    zoom: { min: 3, default: 3 }
   }
 }
