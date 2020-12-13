@@ -1,14 +1,23 @@
 import styled from 'styled-components';
-import apiData from '../apidataid.json'
+import axios from 'axios';
 
+import apiData from '../apidataid.json';
+
+import Mission from '../components/sections/Mission';
+import Agency from '../components/sections/Agency';
 import StatusBar from '../components/StatusBar';
 import Time from '../components/Time';
+import Rocket from '../components/sections/Rocket';
+import Pad from '../components/sections/Pad';
+import { useEffect, useState } from 'react';
+import { getLaunchById } from '../api';
+import { api } from '../config';
 
 const StyledPageContainer = styled.div`
   ${props => props.theme.mixins.pageContainer}
 
   .header {
-    margin: 24px 0 6px;
+    margin: 24px 12px 6px;
     display: flex;
     justify-content: space-between;
 
@@ -22,7 +31,7 @@ const StyledPageContainer = styled.div`
   }
 
   .launch-details {
-    margin: 0 0 48px;
+    margin: 0 12px 48px;
     color: var(--white-opacity);
     display: flex;
 
@@ -33,16 +42,16 @@ const StyledPageContainer = styled.div`
   
   .launch-description {
     width: 80%;
-    margin: 0 0 48px;
+    margin: 0 12px 48px;
   }
 
   .launch-image {
-    margin: 0 0 96px;
+    margin: 0 12px 96px;
     height: 400px;
     overflow: hidden;
     background: var(--dark-blue-2);
     display: flex;
-    width: 100%;
+    /* width: 100%; */
     position: relative;
     justify-content: center;
 
@@ -54,54 +63,17 @@ const StyledPageContainer = styled.div`
   }
 `;
 
-const StyledPageSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 0 0 96px;
+export default function LaunchDetails({ match }) {
+  const [launch, setLaunch] = useState('');
 
-  .heading {
-    display: flex;
-    align-items: center;
-    margin: 0 0 24px;
+  useEffect(() => {
+    getLaunchById(match.params.id)
+      .then(data => setLaunch(data))
 
-    h2 {
-      color: var(--white-opacity);
-      margin: 0 12px 0 0;
-    }
-    .hl {
-      height: 2px;
-      width: 60px;
-      background: var(--white-opacity);
-    }
-  }
+    setLaunch(apiData);
+  }, []);
 
-  .content {
-    /* display: grid; */
-    /* grid-template-columns: repeat(3, 1fr); */
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 24px;
-
-    .data {
-      font-size:  1.4em;
-      font-weight: 600;
-      margin: 0 0 6px;
-    }
-
-    .label {
-      text-transform: uppercase;
-      font-size: .8em;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      color: var(--white-opacity);
-    }
-  }
-`;
-
-export default function LaunchDetails() {
-
-  const launch = apiData;
+  if (!launch) return <div></div>;
 
   return (
     <StyledPageContainer>
@@ -114,52 +86,18 @@ export default function LaunchDetails() {
         <span>{launch.launch_service_provider.name}</span>
         <span>{launch.pad.location.name}</span>
       </div>
-      <div className="launch-description">
-        <p className="description" dangerouslySetInnerHTML={{ __html: launch.mission.description.replace(/(?:\r\n|\r|\n)/g, '<br>') }}></p>
-      </div>
+      {launch.mission && (
+        <div className="launch-description">
+          <p dangerouslySetInnerHTML={{ __html: launch.mission.description.replace(/(?:\r\n|\r|\n)/g, '<br>') }}></p>
+        </div>
+      )}
       <div className="launch-image">
-        <img src={launch.image} />
+        <img src={launch.image} alt={launch.name} />
       </div>
-      <StyledPageSection>
-        <div className="heading">
-          <h2>Mission</h2> <div className="hl"></div>
-        </div>
-        <div className="content">
-          <div>
-            <div className="data">{launch.mission.name}</div> <div className="label">Name</div>
-          </div>
-          <div>
-            <div className="data">{launch.mission.type}</div> <div className="label">Type</div>
-          </div>
-          <div>
-            <div className="data">{launch.mission.orbit.name}</div> <div className="label">Orbit</div>
-          </div>
-        </div>
-      </StyledPageSection>
-      <StyledPageSection>
-        <div className="heading">
-          <h2>Agency</h2> <div className="hl"></div>
-        </div>
-        <div className="content">
-
-        </div>
-      </StyledPageSection>
-      <StyledPageSection>
-        <div className="heading">
-          <h2>Rocket</h2> <div className="hl"></div>
-        </div>
-        <div className="content">
-
-        </div>
-      </StyledPageSection>
-      <StyledPageSection>
-        <div className="heading">
-          <h2>Pad</h2> <div className="hl"></div>
-        </div>
-        <div className="content">
-
-        </div>
-      </StyledPageSection>
+      {launch.mission ? <Mission mission={launch.mission} /> : null}
+      <Agency agency={launch.launch_service_provider} />
+      <Rocket rocket={launch.rocket} />
+      <Pad pad={launch.pad} />
     </StyledPageContainer>
   )
 }
