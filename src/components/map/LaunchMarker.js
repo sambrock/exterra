@@ -45,8 +45,11 @@ const StyledLaunchDetailsContainer = styled.div`
 `;
 
 export default function LaunchMarker({ launch }) {
+  // Fix country code issue
+  if (launch.pad.location.country_code === 'UNK') launch.pad.location.country_code = 'USA';
+
   return (
-    <StyledMarkerContainer>
+    <StyledMarkerContainer className="launch-marker">
       <div className="launch-flag">
         <img src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${getCountryISO2(launch.pad.location.country_code)}.svg`} alt="" />
       </div>
