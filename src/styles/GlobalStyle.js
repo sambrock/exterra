@@ -37,6 +37,7 @@ const GlobalStyle = createGlobalStyle`
     --dark-blue: #030917;
     --dark-blue-2: #0B1A29;
     --white-opacity: rgba(255,255,255,.65);
+    --white-opacity-2: rgba(255,255,255,.30);
     --font-sans: 'Chakra', sans-serif;
     --fz-xxs: 10px;
     --fz-xs: 13px;
@@ -67,8 +68,15 @@ const GlobalStyle = createGlobalStyle`
     color: var(--white);
   }
 
+
+  /* width */
   ::-webkit-scrollbar {
-    display: none;
+    width: 6px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--white-opacity-2);
   }
 
   body {
@@ -98,9 +106,10 @@ const GlobalStyle = createGlobalStyle`
     white-space: normal;
     word-wrap: break-word;
     letter-spacing: .5px;
+    line-height: 1.4em;
   }
 
-  h1, h2 {
+  h1, h2, h3 {
     margin: 0;
     padding: 0;
   }
@@ -115,7 +124,35 @@ const GlobalStyle = createGlobalStyle`
     text-transform: uppercase;
     letter-spacing: 1.6px;
     text-transform: uppercase;
-    font-weight: 600;
+  }
+
+  h3 {
+    font-size: clamp(1rem, 2.5vw, 1rem);
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    color: var(--white-opacity);
+  }
+
+  a {
+    color: var(--white);
+    text-transform: none;
+    text-decoration: none;
+  }
+
+  button {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    
+    &:focus {
+      border-radius: none;
+      outline: 1px solid var(--white-opacity);
+    }
   }
 
   // Override mapbox font-faily
