@@ -58,8 +58,8 @@ const StyledMissionSection = styled.section`
     grid-gap: 24px;
 
     .progress-bar {
-      background: var(--dark-blue-2);
-      padding: 24px;
+      /* background: var(--dark-blue-2); */
+      grid-gap: 48px;
     }
   }
 `;
@@ -79,23 +79,27 @@ const Mission = ({ agency }) => {
     <StyledMissionSection>
       <div className="section-header">
         <h2>Agency <span className="hl"></span></h2>
-        <img className="agency-logo" src={agency.logo_url} alt={`${agency.name} logo`} />
+        {agency.logo_url && (
+          <img className="agency-logo" src={agency.logo_url} alt={`${agency.name} logo`} />
+        )}
       </div>
       <div className="content">
         <div className="launch-flag">
           <img src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${getCountryISO2(agency.country_code)}.svg`} alt={`${agency.country_code} flag`} />
         </div>
         <div className="data">{agency.name} <span>Name</span></div>
-        <div className="data">{agency.type} <span>Type</span></div>
+        <div className="data">{agency.type ? agency.type : '-'} <span>Type</span></div>
       </div>
       <div className="description">
         <p>{agency.description}</p>
       </div>
       <div className="agency-data">
+      {agency.total_launch_count !== 0 && (
         <div className="progress-bar">
           <h3>Launches</h3>
           <ProgressBar data={launchData} />
         </div>
+      )}
         {agency.attempted_landings !== 0 && (
           <div className="progress-bar">
             <h3>Landings</h3>
