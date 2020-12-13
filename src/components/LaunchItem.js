@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import StatusBar from './StatusBar';
@@ -11,9 +12,6 @@ const StyledLaunchItemContainer = styled.div`
   cursor: pointer;
   transition: var(--transition);
 
-  &:hover {
-    color: var(--white);
-  }
   .header {
     display: flex;
     justify-content: space-between;
@@ -55,21 +53,31 @@ const StyledLaunchItemContainer = styled.div`
 `;
 
 export default function LaunchItem({ launch }) {
+  const [expanded, setExpanded] = useState(false);
+  const [hover, setHover] = useState(false);
+
   return (
-    <StyledLaunchItemContainer statusId={launch.status.id}>
-      <StatusBar agency={launch.launch_service_provider} mission={launch.mission} status={launch.status} />
-      <div className="header">
-        <div className="launch-name title">{launch.name}</div>
-        <div>
-          <div className="launch-time"><Time launchTime={launch.net} /></div>
+    <StyledLaunchItemContainer statusId={launch.status.id} onMouseOver={() => setHover(true)} onMouseOut={() => setHover(false)}>
+      <StatusBar agency={launch.launch_service_provider} mission={launch.mission} status={launch.status} hover={hover} />
+      <a href={`/launch/${launch.id}`}>
+        <div className="header">
+          <div className="launch-name title">{launch.name}</div>
+          <div>
+            <div className="launch-time"><Time launchTime={launch.net} /></div>
+          </div>
         </div>
-      </div>
+      </a>
       <div className="launch-details sub-title">
         <span>{launch.launch_service_provider.name.substring(0, 26)}</span>
         <span>{launch.pad.location.name.substring(0, 20)}</span>
       </div>
       <div className="launch-description">
-        <p>{launch.mission ? launch.mission.description.substring(0, 150) : ''}</p>
+        {launch.mission && (
+          <p>
+            {expanded ? launch.mission.description : launch.mission.description.length > 150 ? `${launch.mission.description.substring(0, 150)}... ` : launch.mission.description}
+            {launch.mission.description.length > 150 ? <button onClick={() => setExpanded(!expanded)}>{expanded ? 'Less' : 'More'}</button> : ''}
+          </p>
+        )}
       </div>
     </StyledLaunchItemContainer>
   )
