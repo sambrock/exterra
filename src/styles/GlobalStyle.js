@@ -68,13 +68,10 @@ const GlobalStyle = createGlobalStyle`
     color: var(--white);
   }
 
-
-  /* width */
   ::-webkit-scrollbar {
     width: 6px;
   }
 
-  /* Handle */
   ::-webkit-scrollbar-thumb {
     background: var(--white-opacity-2);
   }
@@ -155,7 +152,7 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  // Override mapbox font-faily
+  // Override mapbox font
   .mapboxgl-map {
     font-family: inherit;
   }

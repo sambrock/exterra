@@ -30,7 +30,7 @@ const Rocket = ({ rocket }) => (
           <div className="th"> Family </div> <div className="td"> {rocket.configuration.family} </div>
         </div>
         <div className="tr">
-          <div className="th"> Maiden flight </div> <div className="td"> {rocket.configuration.maiden_flight ? DateTime.fromISO(rocket.configuration.maiden_flight).toFormat('DD') : '-'} </div>
+          <div className="th"> Maiden flight </div> <div className="td"> {rocket.configuration.maiden_flight ? DateTime.fromISO(rocket.configuration.maiden_flight).toFormat('DD') : 'Yet to fly'} </div>
         </div>
         <div className="tr">
           <div className="th"> Stages </div> <div className="td"> {rocket.configuration.max_stage} </div>

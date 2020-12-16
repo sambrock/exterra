@@ -1,5 +1,5 @@
-import _ from 'lodash';
 import { DateTime } from "luxon";
+import _ from 'lodash';
 
 export const getTime = (launchDateTime) => {
   const start = DateTime.local();
@@ -11,7 +11,6 @@ export const getTime = (launchDateTime) => {
     countingDown: Math.sign(milliseconds) === 1 ? true : false,
     days: days,
     value: DateTime.fromMillis(Math.abs(milliseconds)).toFormat('hh:mm:ss'),
-
   };
 
   return time;
