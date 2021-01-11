@@ -38,8 +38,8 @@ const StyledLaunchDetailsContainer = styled.div`
       ${props => props.theme.mixins.status}
       color: ${props => props.theme.statusColors[props.statusId]};
       border: 1px solid ${props => props.theme.statusColors[props.statusId]};
-      box-shadow: 0 0 3px ${props => props.theme.statusColors[props.statusId]};
-      text-shadow: 0 0 3px ${props => props.theme.statusColors[props.statusId]};
+      /* box-shadow: 0 0 3px ${props => props.theme.statusColors[props.statusId]}; */
+      /* text-shadow: 0 0 3px ${props => props.theme.statusColors[props.statusId]}; */
     }
   }
 `;
@@ -58,7 +58,7 @@ export default function LaunchMarker({ launch }) {
         <span className="launch-service">{launch.launch_service_provider.name}</span>
         <div className="launch-time-status">
           <div className="launch-time"><Time launchTime={launch.net} /></div>
-          <div className="launch-status">{launch.status.abbrev}</div>
+          <div className="launch-status">{launch.status.name}</div>
         </div>
       </StyledLaunchDetailsContainer>
     </StyledMarkerContainer>

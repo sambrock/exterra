@@ -42,9 +42,9 @@ const StatusBar = ({ agency, mission, status, hover }) => (
   <StyledStatusBar statusId={status.id} hover={hover}>
     <div className="tags">
       <div>
-        {agency.type && (
+        {/* {agency.type && (
           <span>{agency.type}</span>
-        )}
+        )} */}
         {mission && (
           <span>{mission.type}</span>
         )}
@@ -52,7 +52,7 @@ const StatusBar = ({ agency, mission, status, hover }) => (
           <span>{mission.orbit.name}</span>
         )}
       </div>
-      <div className="status">{status.abbrev}</div>
+      <div className="status">{status.name}</div>
     </div>
     <div className="hl"></div>
   </StyledStatusBar>

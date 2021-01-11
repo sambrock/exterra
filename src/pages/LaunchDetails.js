@@ -70,7 +70,7 @@ export default function LaunchDetails({ match }) {
     getLaunchById(match.params.id)
       .then(data => setLaunch(data))
 
-    setLaunch(apiData);
+    // setLaunch(apiData);
   }, []);
 
   if (!launch) return <div></div>;
