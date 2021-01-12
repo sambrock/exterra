@@ -17,10 +17,26 @@ import { api } from '../config';
 // }
 
 export const getLaunchById = async (id) => {
-  // await delay(500); // Delay request due to API rate limits
-
   try {
     const response = await axios.get(`${api.baseURL}/launch/${id}`);
+    return response.data;
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const getRockets = async () => {
+  try {
+    const response = await axios.get(`${api.baseURL}/config/launcher/`);
+    return response.data;
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const getRocketById = async (id) => {
+  try {
+    const response = await axios.get(`${api.baseURL}/config/launcher/${id}`);
     return response.data;
   } catch (err) {
     console.error(err)

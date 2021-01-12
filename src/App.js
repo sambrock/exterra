@@ -2,10 +2,14 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/GlobalStyle";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Header from "./components/layout/Header";
 import theme from "./styles/theme";
+import Header from "./components/layout/Header";
 import LaunchDetails from "./pages/LaunchDetails";
 import LaunchMap from "./pages/LaunchMap";
+import Rockets from "./pages/Rockets";
+import RocketCompare from "./pages/RocketCompare";
+import './styles/tailwind.css';
+
 
 export default function App() {
   return (
@@ -15,6 +19,8 @@ export default function App() {
           <GlobalStyle />
           <Header />
           <Switch>
+            <Route path="/rockets/compare/:compare" component={RocketCompare} />
+            <Route path="/rockets" component={Rockets} />
             <Route path="/launch/:id" component={LaunchDetails} />
             <Route path="/" exact component={LaunchMap} />
           </Switch>
