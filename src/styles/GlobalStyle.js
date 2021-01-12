@@ -40,13 +40,13 @@ const GlobalStyle = createGlobalStyle`
     --white-opacity-2: rgba(255,255,255,.30);
     --font-sans: 'Chakra', sans-serif;
     --fz-xxs: 10px;
-    --fz-xs: 13px;
+    --fz-xs: 12px;
     --fz-sm: 14px;
     --fz-md: 16px;
     --fz-lg: 18px;
     --fz-xl: 20px;
     --fz-xxl: 22px;
-    --fz-heading: 32px;
+    --fz-heading: 34px;
     --easing: cubic-bezier(0.43, 0.13, 0.23, 0.96);
     --transition: all 0.25s cubic-bezier(0.43, 0.13, 0.23, 0.96);
   }
@@ -97,6 +97,16 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  main {
+    max-width: 768px;
+    padding: 115px 0;
+    margin: 0 auto;
+
+    @media(max-width: 800px) {
+      padding: 64px 15px;
+    }
+  }
+
   p {
     margin: 0;
     padding: 0;
@@ -109,10 +119,12 @@ const GlobalStyle = createGlobalStyle`
   h1, h2, h3 {
     margin: 0;
     padding: 0;
+    font-weight: 600;
   }
 
   h1 {
-    font-size: clamp(1.3rem, 2.5vw, 2.5rem);
+    /* font-size: clamp(1.3rem, 3vw, 2.5rem); */
+    font-size: var(--fz-heading);
     letter-spacing: .8px;
   }
 

@@ -42,6 +42,7 @@ const mixins = {
     display: flex;
     align-items: center;
     color: var(--white-opacity);
+    margin: 24px 0;
     span {
       margin: 0 0 0 12px;
       height: 2px; 
@@ -56,7 +57,7 @@ const mixins = {
   `,
   label: css`
     text-transform: uppercase;
-    font-size: var(--fz-sm);
+    /* font-size: var(--fz-sm); */
     font-weight: 500;
     letter-spacing: 1.5px;
     color: var(--white-opacity);
@@ -68,35 +69,34 @@ const mixins = {
       display: inline-block;
     }
   `,
-  flexTable: css`
-    width: 100%;
-    .tr {
-      display: flex;
-      justify-content: space-between;
-      font-size: var(--fz-sm);
-      border-bottom: 1px var(--dark-blue-2) solid;
-      padding: 12px 6px;
+  row: css`
+    align-items: center;
 
-      &:nth-child(1) {
-        border-top: 1px var(--dark-blue-2) solid;
-      }
-      .th {
-        text-transform: uppercase;
-        font-size: var(--fz-sm);
-        font-weight: 500;
-        letter-spacing: 1.5px;
-        color: var(--white-opacity);
-        min-width: 100px;
-      }
-      .td {
-        font-weight: 500;
-        letter-spacing: .5px;
-        text-align: right;
-          
-        .unit {
-          color: var(--white-opacity);
-        }
-      }
+    &.row-border {
+      border-top: 1px var(--dark-blue-2) solid;
+    }
+
+    &.row-border-btm {
+      border-top: 1px var(--dark-blue-2) solid;
+      border-bottom: 1px var(--dark-blue-2) solid;
+    }
+
+    .unit {
+      color: var(--white-opacity);
+      margin-left: 4px; 
+    }
+  `,
+  imgContainer: css`
+    position: relative;
+    overflow: hidden;
+    background: var(--dark-blue-2);
+    display: flex;
+    justify-content: center;
+
+    img{
+      height: 100%;
+      object-fit: cover;
+      width: auto;
     }
   `,
 };

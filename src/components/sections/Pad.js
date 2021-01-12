@@ -1,36 +1,33 @@
 import styled from 'styled-components';
 
-const StyledMissionSection = styled.section`
-  margin: 0 0 96px;
+const StyledRow = styled.div.attrs({ className: 'row-border flex justify-between py-3 md:p-3 font-medium text-xs sm:text-sm md:text-base' })`
+  ${props => props.theme.mixins.row}
 
-  h2 {
-    ${props => props.theme.mixins.sectionH2}
-  }
-
-  .content {
-    padding: 0 24px;
-    margin: 32px 0;
-    
-    .flex-table {
-      ${props => props.theme.mixins.flexTable}
-    }
+  .label {  
+    ${props => props.theme.mixins.label}
+    grid-column: 2;
+    grid-row: 1;
   }
 `;
 
+const StyledSectionHeader = styled.h2`
+  ${props => props.theme.mixins.sectionH2}
+`;
+
 const Pad = ({ pad }) => (
-  <StyledMissionSection>
-    <h2>Pad <span className="hl"></span></h2>
-    <div className="content">
-      <div className="flex-table">
-        <div className="tr">
-          <div className="th"> Name </div> <div className="td"> {pad.name} </div>
-        </div>
-        <div className="tr">
-          <div className="th"> Location </div> <div className="td"> {pad.location.name} </div>
-        </div>
-      </div>
+  <section>
+    <StyledSectionHeader>Pad <span className="hl"></span></StyledSectionHeader>
+    <div className="flex-table">
+      <StyledRow>
+        <span className="label">Name</span>
+        <span>{pad.name}</span>
+      </StyledRow>
+      <StyledRow className="row-border-btm">
+        <span className="label">Location</span>
+        <span>{pad.location.name}</span>
+      </StyledRow>
     </div>
-  </StyledMissionSection>
+  </section>
 )
 
 export default Pad;
