@@ -108,11 +108,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   p {
+    font-size: var(--fz-md);
     margin: 0;
     padding: 0;
     white-space: normal;
     word-wrap: break-word;
-    letter-spacing: .5px;
     line-height: 1.4em;
   }
 
@@ -123,8 +123,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    /* font-size: clamp(1.3rem, 3vw, 2.5rem); */
-    font-size: var(--fz-heading);
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    /* font-size: var(--fz-heading); */
     letter-spacing: .8px;
   }
 

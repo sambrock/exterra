@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { DateTime } from 'luxon';
 
-const StyledRow = styled.div.attrs({ className: 'row-border flex justify-between py-3 md:p-3 font-medium text-xs sm:text-sm md:text-base' })`
+const StyledRow = styled.div.attrs({ className: 'row-border flex justify-between py-3 px-2 sm:px-6 font-medium text-sm md:text-base' })`
   ${props => props.theme.mixins.row}
 
   .label {  

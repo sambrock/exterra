@@ -30,10 +30,6 @@ const mixins = {
     max-height: 19px;
     line-height: 100%;
   `,
-  time: css`
-    /* color: var(--white); */
-    font-weight: 500;
-  `,
   pageContainer: css`
     width: 800px;
     margin: 120px auto;
@@ -62,7 +58,7 @@ const mixins = {
     letter-spacing: 1.5px;
     color: var(--white-opacity);
   `,
-  databar: css`
+  progressBar: css`
     width: 100%;
     span {
       height: 2px;

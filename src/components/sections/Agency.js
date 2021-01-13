@@ -7,13 +7,11 @@ const StyledDataDiv = styled.div.attrs({ className: 'text-base sm:text-xl font-s
   .label {
     ${props => props.theme.mixins.label}
     display: block;
-    margin-top: 6px;
   }
 `;
 
 const StyledSectionHeader = styled.h2`
   ${props => props.theme.mixins.sectionH2}
-  margin: 24px 0 0; // override mixin
 `;
 
 const Mission = ({ agency }) => {
@@ -32,25 +30,25 @@ const Mission = ({ agency }) => {
       <div className="flex justify-between items-center">
         <StyledSectionHeader>Agency <span className="hl"></span></StyledSectionHeader>
         {agency.logo_url && (
-          <img className="h-6" src={agency.logo_url} alt={`${agency.name} logo`} />
+          <img className="h-4 sm:h-6" src={agency.logo_url} alt={`${agency.name} logo`} />
         )}
       </div>
-      <div className="flex justify-between items-center px-6 py-12">
+      <div className="grid grid-cols-2 gap-6 sm:flex sm:justify-between items-center px-2 sm:px-6 py-3 sm:py-6">
         <img className="h-12" src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${getCountryISO2(agency.country_code)}.svg`} alt={`${agency.country_code} flag`} />
-        <StyledDataDiv>{agency.name} <span className="label">Name</span></StyledDataDiv>
-        <StyledDataDiv>{agency.type ? agency.type : '-'} <span className="label">Type</span></StyledDataDiv>
+        <StyledDataDiv>{agency.name} <span className="label label text-base mt-1">Name</span></StyledDataDiv>
+        <StyledDataDiv>{agency.type ? agency.type : '-'} <span className="label label text-base mt-1">Type</span></StyledDataDiv>
       </div>
-      <p className="text-opacity text-sm my-6">{agency.description}</p>
-      <div className="grid grid-cols-2">
+      <p className="text-opacity text-sm my-3 px-2 sm:px-6">{agency.description}</p>
+      <div className="grid grid-cols-2 my-12 px-2 sm:px-6">
         {agency.total_launch_count !== 0 && (
           <div>
-            <h3>Launches</h3>
+            <h3 className="text-sm">Launches</h3>
             <ProgressBar data={launchData} />
           </div>
         )}
         {agency.attempted_landings !== 0 && (
           <div>
-            <h3>Landings</h3>
+            <h3 className="text-sm">Landings</h3>
             <ProgressBar data={landingData} />
           </div>
         )}

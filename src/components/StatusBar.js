@@ -1,61 +1,45 @@
-import styled from "styled-components";
+import { Fragment } from 'react';
+import styled from 'styled-components';
 
-const StyledStatusBar = styled.div`
-  .tags {
-    ${props => props.theme.mixins.tag}
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    grid-column: span 2;
-    color: ${props => props.theme.statusColors[props.statusId]};
-    margin: 0 0 8px;
-    padding: 0 12px;
-
-    span {
-      transition: var(--transition);
-      margin-right: 24px;
-      text-shadow: ${props => props.hover ?  `0 0 3px ${props.theme.statusColors[props.statusId]}` : 'none'};
-    }
-  }
-
-  .hl {
-    ${props => props.theme.mixins.hl}
-    grid-column: span 2;
-    height: 2px;
-    margin: 3px 0 12px;
-    width: 100%;
-    background: ${props => props.theme.statusColors[props.statusId]};
-    transition: var(--transition);
-    box-shadow: ${props => props.hover ?  `0 0 3px ${props.theme.statusColors[props.statusId]}` : 'none'};
-  }
-
-  .status {
-    ${props => props.theme.mixins.status}
-    color: ${props => props.theme.statusColors[props.statusId]};
-    border: 1px solid ${props => props.theme.statusColors[props.statusId]};
-    transition: var(--transition);
-    box-shadow: ${props => props.hover ?  `0 0 3px ${props.theme.statusColors[props.statusId]}` : 'none'};
-  }
+const StyledTagsDiv = styled.div`
+  ${props => props.theme.mixins.tag}
+  color: ${props => props.theme.statusColors[props.statusId]};
 `;
 
-const StatusBar = ({ agency, mission, status, hover }) => (
-  <StyledStatusBar statusId={status.id} hover={hover}>
-    <div className="tags">
-      <div>
-        {/* {agency.type && (
-          <span>{agency.type}</span>
-        )} */}
+const StyledStatusDiv = styled.div`
+  ${props => props.theme.mixins.status}
+  color: ${props => props.theme.statusColors[props.statusId]};
+  border: 1px solid ${props => props.theme.statusColors[props.statusId]};
+  transition: var(--transition);
+  box-shadow: ${props => props.hover ? `0 0 3px ${props.theme.statusColors[props.statusId]}` : 'none'};
+`;
+
+const StyledHL = styled.div.attrs({ className: 'h-0.5 w-full' })`
+  ${props => props.theme.mixins.hl}
+  background: ${props => props.theme.statusColors[props.statusId]};
+  transition: var(--transition);
+  box-shadow: ${props => props.hover ? `0 0 3px ${props.theme.statusColors[props.statusId]}` : 'none'};
+`;
+
+
+const StatusBar = ({ agency, mission, status }) => (
+  <div>
+    <div className="flex justify-between items-end mb-2">
+      <StyledTagsDiv statusId={status.id}>
         {mission && (
-          <span>{mission.type}</span>
+          <span className="mr-3 sm:mr-6">{mission.type}</span>
         )}
         {(mission && mission.orbit) && (
-          <span>{mission.orbit.name}</span>
+          <Fragment><span className="hidden sm:inline-block mr-6">{mission.orbit.name}</span><span className="inline-block sm:hidden mr-3">{mission.orbit.abbrev}</span></Fragment>
         )}
-      </div>
-      <div className="status">{status.name}</div>
+        {agency.type && (
+          <span className="hidden sm:inline-block">{agency.type}</span>
+        )}
+      </StyledTagsDiv>
+      <StyledStatusDiv statusId={status.id}>{status.abbrev}</StyledStatusDiv>
     </div>
-    <div className="hl"></div>
-  </StyledStatusBar>
+    <StyledHL statusId={status.id}></StyledHL>
+  </div>
 );
 
 export default StatusBar;

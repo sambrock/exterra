@@ -14,6 +14,8 @@ module.exports = {
       'dark-blue2': 'var(--dark-blue-2)',
       'opacity': 'var(--white-opacity)',
       'opacity-2': 'var(--white-opacity-2)',
+      'green': 'var(--green)',
+      'red': 'var(--red)',
     },
     fontSize: {
       'xzs': 'var(--fz-xxs)',
