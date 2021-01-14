@@ -1,31 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { getUpcomingLaunches } from '../api';
 import LaunchList from '../components/LaunchList';
 import Map from '../components/map/Map';
-
-import apiData from '../apidata.json';
+import { mapbox } from '../config';
 
 export default function Launches() {
-    const [upcoming, setUpcoming] = useState('');
-  
-    // const getUpcoming = async () => {
-    //   const response = await axios.get('https://ll.thespacedevs.com/2.1.0/launch/upcoming?limit=10');
-    //   const { data } = response;
-  
-    //   setUpcoming(data);
-    // }
-  
-    // useEffect(() => {
-    //   getUpcoming();
-    // }, [])
-  
-    // if(!upcoming) return <div></div>;
-  
+  const [upcoming, setUpcoming] = useState('');
+  const [centerMap, setCenterMap] = useState();
+
+
+  useEffect(() => {
+    getUpcomingLaunches()
+      .then(data => setUpcoming(data.results))
+  }, []);
+
+  if (!upcoming) return <div></div>;
+
   return (
-    <>
-      <LaunchList launches={apiData.results} />
+    <div className="max-h-screen overflow-hidden">
+      <LaunchList launches={upcoming} setCenterMap={setCenterMap} />
       <div id="map">
-        <Map launches={apiData.results} />
+        <Map launches={upcoming} centerMap={centerMap} />
       </div>
-    </>
+    </div>
   )
 }

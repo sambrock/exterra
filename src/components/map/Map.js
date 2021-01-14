@@ -1,3 +1,4 @@
+import { createRef, useEffect, useRef, useState } from 'react';
 import ReactMapboxGl, { Marker } from 'react-mapbox-gl';
 
 import LaunchMarker from './LaunchMarker';
@@ -6,16 +7,33 @@ import { mapbox } from '../../config';
 import { groupByLocation } from '../../utils';
 import LaunchMarkerMultple from './LaunchMarkerMultple';
 
-export default function Map({ launches }) {
-  const Map = ReactMapboxGl({
-    accessToken: mapbox.accessToken,
-    minZoom: mapbox.zoom.min
-  });
+const Mapbox = ReactMapboxGl({
+  accessToken: mapbox.accessToken,
+  minZoom: mapbox.zoom.min,
+});
+
+export default function Map({ launches, centerMap }) {
+  const defaultCenter = [mapbox.center.longitude, mapbox.center.latitude];
+  
+  let mapRef = createRef();
+
+  useEffect(() => {
+    if(!centerMap) return;
+    setTimeout(() => {
+      mapRef.state.map.flyTo({
+        center: centerMap,
+        zoom: 7,
+        speed: 1.5,
+        curve: 1,
+        pitch: 5 + (Math.random() - 0.5) * 10,
+      })
+    }, 10)
+  }, [centerMap, mapRef]);
 
   launches = groupByLocation(launches);
 
   return (
-    <Map style={mapbox.style} containerStyle={{ ...mapbox.containerStyle }} center={[mapbox.center.longitude, mapbox.center.latitude]} zoom={[mapbox.zoom.default]}  >
+    <Mapbox ref={(map) => { mapRef = map }} center={defaultCenter} style={mapbox.style} containerStyle={{ ...mapbox.containerStyle }} zoom={[mapbox.zoom.default]}>
       {launches[0].map(launch => {
         return (
           <Marker coordinates={[launch.pad.longitude, launch.pad.latitude]} anchor="center" launch={launch} key={launch.id}>
@@ -28,6 +46,6 @@ export default function Map({ launches }) {
           <LaunchMarkerMultple key={launchArr[0].id} launches={launchArr} />
         </Marker>
       ))}
-    </Map>
+    </Mapbox>
   )
 }

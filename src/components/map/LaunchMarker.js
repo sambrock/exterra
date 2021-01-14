@@ -54,7 +54,7 @@ export default function LaunchMarker({ launch }) {
         <img src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${getCountryISO2(launch.pad.location.country_code)}.svg`} alt="" />
       </div>
       <StyledLaunchDetailsContainer statusId={launch.status.id}>
-        <span className="launch-name">{launch.name}</span>
+        <span className="launch-name">{launch.rocket.configuration.full_name}</span>
         <span className="launch-service">{launch.launch_service_provider.name}</span>
         <div className="launch-time-status">
           <div className="launch-time"><Time launchTime={launch.net} /></div>

@@ -21,8 +21,8 @@ const Mission = ({ agency }) => {
   }
 
   const landingData = {
-    success: agency.successful_landings * (100 / agency.attempted_landings),
-    fail: agency.failed_landings * (100 / agency.attempted_landings)
+    success: agency.successful_landings * (100 / (agency.successful_landings + agency.failed_landings)),
+    fail: agency.failed_landings * (100 / (agency.successful_landings + agency.failed_landings))
   }
 
   return (

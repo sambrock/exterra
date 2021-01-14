@@ -33,7 +33,7 @@ export default function LaunchDetails({ match }) {
         <div className="h-auto text-xl order-1 mb-4 sm:mb-0 sm:ml-auto"><Time launchTime={launch.net} /></div>
       </div>
       <div className="flex text-opacity text-xs sm:text-sm">
-        <span className="mr-6">{launch.launch_service_provider.abbrev}</span>
+        <span className="mr-6">{launch.launch_service_provider.name.length < 25 ? launch.launch_service_provider.name : launch.launch_service_provider.abbrev}</span>
         <span>{launch.pad.location.name}</span>
       </div>
       {launch.mission && (
