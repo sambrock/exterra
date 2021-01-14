@@ -16,7 +16,7 @@ const Time = ({ launchTime }) => {
   if(!time) return <></>
 
   return (
-    <div>
+    <div className="whitespace-nowrap	">
       <span className="text-opacity mr-1">{time.countingDown ? 'T-' : 'T+'} </span>
       <time className="font-semibold">{time.days === 0 ? time.value : Math.abs(time.days)}</time>
       {time.days !== 0 && (

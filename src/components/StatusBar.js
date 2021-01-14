@@ -14,29 +14,28 @@ const StyledStatusDiv = styled.div`
   box-shadow: ${props => props.hover ? `0 0 3px ${props.theme.statusColors[props.statusId]}` : 'none'};
 `;
 
-const StyledHL = styled.div.attrs({ className: 'h-0.5 w-full' })`
-  ${props => props.theme.mixins.hl}
+const StyledHL = styled.div.attrs({ className: 'w-full' })`
+  height: 2px;
   background: ${props => props.theme.statusColors[props.statusId]};
   transition: var(--transition);
   box-shadow: ${props => props.hover ? `0 0 3px ${props.theme.statusColors[props.statusId]}` : 'none'};
 `;
 
-
 const StatusBar = ({ agency, mission, status }) => (
   <div>
     <div className="flex justify-between items-end mb-2">
       <StyledTagsDiv statusId={status.id}>
+        {agency.type && (
+          <span className="hidden sm:inline-block mr-3 sm:mr-6">{agency.type}</span>
+        )}
         {mission && (
           <span className="mr-3 sm:mr-6">{mission.type}</span>
         )}
         {(mission && mission.orbit) && (
           <Fragment><span className="hidden sm:inline-block mr-6">{mission.orbit.name}</span><span className="inline-block sm:hidden mr-3">{mission.orbit.abbrev}</span></Fragment>
         )}
-        {agency.type && (
-          <span className="hidden sm:inline-block">{agency.type}</span>
-        )}
       </StyledTagsDiv>
-      <StyledStatusDiv statusId={status.id}>{status.abbrev}</StyledStatusDiv>
+      <StyledStatusDiv statusId={status.id}>{status.name}</StyledStatusDiv>
     </div>
     <StyledHL statusId={status.id}></StyledHL>
   </div>

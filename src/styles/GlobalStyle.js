@@ -70,6 +70,7 @@ const GlobalStyle = createGlobalStyle`
 
   ::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -102,7 +103,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 115px 0;
     margin: 0 auto;
 
-    @media(max-width: 800px) {
+    @media(max-width: 768px) {
       padding: 64px 15px;
     }
   }
@@ -168,6 +169,12 @@ const GlobalStyle = createGlobalStyle`
   .mapboxgl-map {
     font-family: inherit;
   }
+
+  .mapboxgl-ctrl-bottom-left, .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+    display: none;
+  }
+
+
 `;
 
 export default GlobalStyle;
