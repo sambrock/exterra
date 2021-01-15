@@ -10,21 +10,19 @@ import { Header } from './components';
 
 export default function App() {
   return (
-    <div className="App">
-      <Router>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <Header />
-          <Switch>
-            <Route path="/previous" component={Previous} />
-            <Route path="/upcoming" component={Upcoming} />
-            <Route path="/rockets/compare/:compare" component={RocketCompare} />
-            <Route path="/rockets" component={Rockets} />
-            <Route path="/launch/:id" component={LaunchDetails} />
-            <Route path="/" exact component={LaunchMap} />
-          </Switch>
-        </ThemeProvider>
-      </Router>
-    </div>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Header />
+        <Switch>
+          <Route path="/previous" component={Previous} />
+          <Route path="/upcoming" component={Upcoming} />
+          <Route path="/rockets/compare/:compare" component={RocketCompare} />
+          <Route path="/rockets" component={Rockets} />
+          <Route path="/launch/:id" component={LaunchDetails} />
+          <Route path="/" exact component={LaunchMap} />
+        </Switch>
+      </ThemeProvider>
+    </Router>
   );
 }
