@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
+import ClipLoader from "react-spinners/ClipLoader";
 
 import { getRockets } from '../api';
 import { RocketItem } from '../components';
@@ -23,6 +24,7 @@ export default function Rockets() {
   }, [offset]);
 
   useEffect(() => {
+    if(!rockets) return;
     const observer = new IntersectionObserver(handleObserver, { root: null, rootMargin: "20px", threshold: 1.0 });
     
     if (loader.current) {
@@ -53,7 +55,7 @@ export default function Rockets() {
       <div>
         {rockets.map(rocket => <RocketItem key={rocket.id} rocket={rocket} setCompare={setCompare} locked={compare.length > 1} />)}
       </div>
-      <div className="loading" ref={loader}>Loading...</div>
+      <div className="loading mt-6 flex w-full border justify-center" ref={loader}><ClipLoader color='#fffff' size={35} /></div>
     </main>
   )
 }
