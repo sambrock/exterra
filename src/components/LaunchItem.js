@@ -1,65 +1,27 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-
+import React from 'react'
+import { Link } from 'react-router-dom';
 import StatusBar from './StatusBar';
 import Time from './Time';
-import { animated, useSpring } from 'react-spring';
-import { Link } from 'react-router-dom';
 
-const StyledContainerDiv = styled(animated.div)`
-  width: 350px;
-  flex-shrink: 0;
-
-  @media(max-width: 480px) {
-    width: calc(100vw - 80px);
-  }
-
-  &.active {
-    width: 500px;
-
-    @media(max-width: 480px) {
-      width: calc(100vw - 60px);
-    }
-  }
-`;
-
-export default function LaunchItem({ launch, isActive, setActive, setCenterMap }) {
-  const [expanded, setExpanded] = useState(false);
-  const [hover, setHover] = useState(false);
-
-  const containerProps = useSpring({ paddingBottom: hover && !isActive ? '12px' : '0px' });
-
-  const handleClick = () => {
-    setActive();
-    if(!isActive) setCenterMap([launch.pad.longitude, launch.pad.latitude]);
-  }
-
-  return (
-    <StyledContainerDiv
-      className={`launch-item flex flex-col cursor-pointer mx-4 sm:mx-8 select-none ${isActive ? 'active' : 'inactive'}`}
-      style={containerProps}
-      isActive={isActive}
-      onClick={() => handleClick()}
-      onMouseOver={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-    >
-      <StatusBar agency={launch.launch_service_provider} mission={launch.mission} status={launch.status} />
-      <Link to={isActive ? `/launch/${launch.id}` : ''}>
-      <div className={`flex justify-between mb-1 font-semibold ${isActive ? 'mt-3' : 'mt-2'}`}>
-        <div className={`${isActive ? 'text-xl' : 'text-md'}`}>{isActive ? launch.name : launch.rocket.configuration.full_name}</div>
-        <div className={`pl-6 ${isActive ? 'text-md' : 'text-sm'}`}><Time launchTime={launch.net} /></div>
+const LaunchItem = ({launch}) => (
+  <div className="flex flex-col cursor-pointer mb-6 sm:mb-12">
+    <StatusBar agency={launch.launch_service_provider} mission={launch.mission} status={launch.status} />
+    <Link to={`/launch/${launch.id}`}>
+      <div className="flex justify-between mb-1 font-semibold mt-3">
+        <div className="text-xl ">{launch.name}</div><Time launchTime={launch.net} />
       </div>
-      </Link>
-      <div className={`text-opacity text-sm ${isActive ? 'block' : 'hidden'}`}>
-        <span className="mr-4">{launch.launch_service_provider.name}</span>
-        <span>{launch.pad.location.name}</span>
-      </div>
-      {launch.mission && (
-        <p className={`text-opacity overflow-hidden ${isActive ? 'mt-4 h-auto' : 'h-0'}`}>
-          {expanded ? launch.mission.description : launch.mission.description.length > 150 ? `${launch.mission.description.substring(0, 150)}... ` : launch.mission.description}
-          {launch.mission.description.length > 150 ? <button onClick={() => setExpanded(!expanded)}>{expanded ? 'Less' : 'More'}</button> : ''}
-        </p>
-      )}
-    </StyledContainerDiv>
-  )
-}
+    </Link>
+    <div className={`text-opacity text-sm`}>
+      <span className="mr-4">{launch.launch_service_provider.name}</span>
+      <span>{launch.pad.location.name}</span>
+    </div>
+    {launch.mission && (
+      <p className={`text-opacity overflow-hidden mt-4`}>
+        {launch.mission.description.length > 150 ? `${launch.mission.description.substring(0, 150)}... ` : launch.mission.description}
+        {launch.mission.description.length > 150 ? <Link to={`/launch/${launch.id}`} className="font-semibold">More</Link> : ''}
+      </p>
+    )}
+  </div>
+);
+
+export default LaunchItem;

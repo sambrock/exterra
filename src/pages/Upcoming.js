@@ -1,0 +1,24 @@
+import { useState, useEffect } from 'react';
+
+import { getUpcomingLaunches } from '../api';
+import LaunchItem from '../components/LaunchItem';
+
+export default function Upcoming() {
+  const [upcoming, setUpcoming] = useState([]);
+
+  useEffect(() => {
+    getUpcomingLaunches()
+      .then(data => setUpcoming(data.results))
+  }, []);
+
+  return (
+    <main>
+      <h1 className="mb-12">Upcoming Launches</h1>
+      <section>
+        {upcoming.map(launch => (
+         <LaunchItem launch={launch} />
+        ))}
+      </section>
+    </main>
+  )
+}
