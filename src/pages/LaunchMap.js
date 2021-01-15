@@ -1,7 +1,11 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState, lazy } from 'react';
 
 import { getUpcomingLaunches } from '../api';
-import { Map, LaunchMapList } from '../components';
+import { LaunchMapList } from '../components';
+
+const Map = lazy(() => import('../components/map/Map'));
+
+const renderLoader = () => <h1 className="bg-white">Loading</h1>;
 
 export default function Launches() {
   const [upcoming, setUpcoming] = useState('');
@@ -18,7 +22,9 @@ export default function Launches() {
     <div className="max-h-screen w-screen">
       <LaunchMapList launches={upcoming} setCenterMap={setCenterMap} />
       <div id="map">
-        <Map launches={upcoming} centerMap={centerMap} />
+        <Suspense fallback={renderLoader()}>
+          <Map launches={upcoming} centerMap={centerMap} />
+        </Suspense>
       </div>
     </div>
   )
