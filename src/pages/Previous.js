@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 
 import { getPreviousLaunches } from '../api';
 import { LaunchItem } from '../components';
@@ -33,6 +34,7 @@ export default function Previous() {
 
   return (
     <main>
+      <Helmet title='Previous Launches'/>
       <div className="flex items-center justify-between mb-6 sm:mb-12">
         <h1>Previous Launches</h1>
       </div>

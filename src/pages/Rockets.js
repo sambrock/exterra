@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 import { getRockets } from '../api';
 import { RocketItem } from '../components';
@@ -40,6 +41,7 @@ export default function Rockets() {
 
   return (
     <main>
+      <Helmet title='Rockets' />
       <div className="flex flex-grow-0 justify-between items-center mb-8">
         <h1>Rockets</h1>
         {compare.length > 1 && (

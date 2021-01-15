@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { DateTime } from 'luxon';
+import { Helmet } from 'react-helmet';
+
 
 import { getRocketById } from '../api';
 
@@ -61,6 +63,7 @@ export default function RocketCompare({ match }) {
 
   return (
     <main>
+      <Helmet title={`${rocketA.name} vs ${rocketB.name}`} />
       <div className="grid grid-cols-2 gap-4 sm:gap-12">
         {rockets.map(rocket => <StyledImgContainer>{rocket.image_url ? <img src={rocket.image_url} alt={rocket.name} /> : <i className="m-auto material-icons text-opacity-2 text-heading">image_not_supported</i>}</StyledImgContainer>)}
       </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 import { getLaunchById } from '../api';
 import { StatusBar, Mission, Agency, Time, Rocket, Pad } from '../components';
@@ -21,6 +22,7 @@ export default function LaunchDetails({ match }) {
 
   return (
     <main>
+      <Helmet title={launch.name}/>
       <StatusBar agency={launch.launch_service_provider} mission={launch.mission} status={launch.status} />
       <div className="flex flex-col sm:flex-row sm:justify-between mt-4 sm:mt-6 mb-2">
         <h1>{launch.name}</h1>

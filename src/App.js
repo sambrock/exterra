@@ -7,12 +7,14 @@ import './styles/tailwind.css';
 
 import { Previous, LaunchDetails, LaunchMap, Rockets, Upcoming, RocketCompare } from './pages';
 import { Header } from './components';
+import Head from './components/Head';
 
 export default function App() {
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
+        <Head />
         <Header />
         <Switch>
           <Route path="/previous" component={Previous} />
