@@ -28,7 +28,7 @@ export const Status = ({ status }) => (
 const StatusBar = ({ agency, mission, status }) => (
   <div>
     <div className="flex justify-between items-end mb-2">
-      <StyledTagsDiv statusId={status.id}>
+      <StyledTagsDiv statusId={status.id} className="whitespace-nowrap overflow-hidden mr-6">
         {agency.type && (
           <span className="hidden sm:inline-block mr-3 sm:mr-6">{agency.type}</span>
         )}

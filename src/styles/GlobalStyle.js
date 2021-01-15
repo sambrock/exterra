@@ -129,7 +129,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h2, h3 {
-    font-size: var(--fz-lg);
+    font-size: var(--fz-md);
     text-transform: uppercase;
     letter-spacing: 1.6px;
     text-transform: uppercase;

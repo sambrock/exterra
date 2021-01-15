@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 import { getPreviousLaunches } from '../api';
 import { LaunchItem } from '../components';
@@ -16,6 +17,7 @@ export default function Previous() {
   }, [offset]);
 
   useEffect(() => {
+    if(!previous) return;
     const observer = new IntersectionObserver(handleObserver, { root: null, rootMargin: "20px", threshold: 1.0 });
     
     if (loader.current) {
@@ -43,7 +45,7 @@ export default function Previous() {
          <LaunchItem launch={launch} />
         ))}
       </section>
-      <div className="loading" ref={loader}>Loading...</div>
+      <div className="loading mt-6 flex w-full border justify-center" ref={loader}><ClipLoader color='#fffff' size={35} /></div>
     </main>
   )
 }

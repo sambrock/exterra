@@ -38,6 +38,7 @@ const mixins = {
     font-weight: 500;
     letter-spacing: 1.5px;
     color: var(--white-opacity);
+    margin-right: 12px;
   `,
   progressBar: css`
     width: 100%;

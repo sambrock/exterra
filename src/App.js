@@ -22,6 +22,7 @@ export default function App() {
           <Route path="/rockets" component={Rockets} />
           <Route path="/launch/:id" component={LaunchDetails} />
           <Route path="/" exact component={LaunchMap} />
+          <Route path='*' exact component={LaunchMap} />
         </Switch>
       </ThemeProvider>
     </Router>
