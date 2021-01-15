@@ -125,22 +125,14 @@ const GlobalStyle = createGlobalStyle`
 
   h1 {
     font-size: clamp(2rem, 4vw, 2.5rem);
-    /* font-size: var(--fz-heading); */
     letter-spacing: .8px;
   }
 
-  h2 {
-    font-size: clamp(1rem, 2.5vw, 1rem);
+  h2, h3 {
+    font-size: var(--fz-lg);
     text-transform: uppercase;
     letter-spacing: 1.6px;
     text-transform: uppercase;
-  }
-
-  h3 {
-    font-size: clamp(1rem, 2.5vw, 1rem);
-    text-transform: uppercase;
-    letter-spacing: 1.6px;
-    color: var(--white-opacity);
   }
 
   a {
