@@ -17,4 +17,5 @@ export { default as ProgressBar } from './ProgressBar';
 export { default as RocketItem } from './RocketItem';
 export { default as StatusBar, Status } from './StatusBar';
 export { default as Time } from './Time';
+export { default as Head } from './Head';
 
