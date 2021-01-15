@@ -31,11 +31,13 @@ export default function LaunchDetails({ match }) {
         <span>{launch.pad.location.name}</span>
       </div>
       {launch.mission && (
-        <p className="my-6" dangerouslySetInnerHTML={{ __html: launch.mission.description.replace(/(?:\r\n|\r|\n)/g, '<br>') }}></p>
+        <p className="mt-6 mb-12" dangerouslySetInnerHTML={{ __html: launch.mission.description.replace(/(?:\r\n|\r|\n)/g, '<br>') }}></p>
       )}
-      <StyledImgContainer className="my-12">
-        <img src={launch.image} alt={launch.name} />
-      </StyledImgContainer>
+      {launch.image_url && (
+        <StyledImgContainer className="my-6">
+          <img src={launch.image} alt={launch.name} />
+        </StyledImgContainer>
+      )}
       {launch.mission ? <Mission mission={launch.mission} /> : null}
       <Agency agency={launch.launch_service_provider} />
       <Rocket rocket={launch.rocket} />
