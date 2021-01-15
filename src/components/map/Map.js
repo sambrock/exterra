@@ -1,11 +1,9 @@
 import { createRef, useEffect } from 'react';
 import ReactMapboxGl, { Marker } from 'react-mapbox-gl';
 
-import LaunchMarker from './LaunchMarker';
-
 import { mapbox } from '../../config';
 import { groupByLocation } from '../../utils';
-import LaunchMarkerMultple from './LaunchMarkerMultple';
+import { LaunchMarker, LaunchMarkerMultple } from '../';
 
 const Mapbox = ReactMapboxGl({
   accessToken: mapbox.accessToken,
@@ -15,11 +13,11 @@ const Mapbox = ReactMapboxGl({
 
 export default function Map({ launches, centerMap }) {
   const defaultCenter = [mapbox.center.longitude, mapbox.center.latitude];
-  
+
   let mapRef = createRef();
 
   useEffect(() => {
-    if(!centerMap) return;
+    if (!centerMap) return;
     setTimeout(() => {
       mapRef.state.map.flyTo({
         center: centerMap,
