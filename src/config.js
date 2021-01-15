@@ -1,4 +1,8 @@
 module.exports = {
+  site: {
+    defaultTitle: 'Exterra'
+  },
+  
   api: {
     baseURL: 'https://ll.thespacedevs.com/2.1.0',
     devURL: 'https://lldev.thespacedevs.com/2.1.0', // dev endpoint, no throttling / limits, works fine for legacy data
@@ -10,5 +14,5 @@ module.exports = {
     containerStyle: { height: '100vh', width: '100vw' },
     center: { longitude: -95.0364, latitude: 32.8951 },
     zoom: { min: 3, default: 4 }
-  }
+  },
 }
