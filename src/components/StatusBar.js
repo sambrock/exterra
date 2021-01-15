@@ -21,6 +21,10 @@ const StyledHL = styled.div.attrs({ className: 'w-full' })`
   box-shadow: ${props => props.hover ? `0 0 3px ${props.theme.statusColors[props.statusId]}` : 'none'};
 `;
 
+export const Status = ({ status }) => (
+  <StyledStatusDiv statusId={status.id}>{status.abbrev}</StyledStatusDiv>
+)
+
 const StatusBar = ({ agency, mission, status }) => (
   <div>
     <div className="flex justify-between items-end mb-2">
@@ -35,7 +39,7 @@ const StatusBar = ({ agency, mission, status }) => (
           <Fragment><span className="hidden sm:inline-block mr-6">{mission.orbit.name}</span><span className="inline-block sm:hidden mr-3">{mission.orbit.abbrev}</span></Fragment>
         )}
       </StyledTagsDiv>
-      <StyledStatusDiv statusId={status.id}>{status.name}</StyledStatusDiv>
+      <Status status={status} />
     </div>
     <StyledHL statusId={status.id}></StyledHL>
   </div>
