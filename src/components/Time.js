@@ -1,27 +1,33 @@
 import { useEffect, useState } from 'react';
+import { DateTime } from 'luxon';
 
-import { getTime } from '../utils';
+import { getCountdown } from '../utils';
 
 const Time = ({ launchTime }) => {
   const [time, setTime] = useState('');
 
+  const launch = DateTime.fromISO(launchTime);
+  const { hours } = DateTime.fromISO(launchTime).diff(DateTime.local(), ['hours']).toObject();
+
   useEffect(() => {
+    Math.abs(hours) < 24 ? setTime(getCountdown(launchTime)) : setTime(launch.toFormat('DD'));
+  }, []);
+
+  useEffect(() => {
+    if (Math.abs(hours) > 24) return;
+
     const interval = setInterval(() => {
-      setTime(getTime(launchTime));
+      setTime(getCountdown(launchTime));
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [setTime, launchTime])
+  }, [time]);
 
-  if(!time) return <></>
+  if (!time) return <div></div>;
 
   return (
-    <div className="whitespace-nowrap	">
-      <span className="text-opacity mr-1">{time.countingDown ? 'T-' : 'T+'} </span>
-      <time className="font-semibold">{time.days === 0 ? time.value : Math.abs(time.days)}</time>
-      {time.days !== 0 && (
-        <span className="ml-1 text-opacity text-xs">{time.days !== 1 ? 'DAYS' : 'DAY'}</span>
-      )}
+    <div className="whitespace-nowrap font-semibold">
+      <span className="text-opacity mr-2">{Math.sign(hours) === 1 ? 'T-' : 'T+'}</span><time>{time}</time>
     </div>
   )
 }
