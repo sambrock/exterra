@@ -44,8 +44,8 @@ export default function LaunchMapItem({ launch, isActive, setActive, setCenterMa
       <StatusBar agency={launch.launch_service_provider} mission={launch.mission} status={launch.status} />
       <Link to={isActive ? `/launch/${launch.id}` : ''}>
         <div className={`flex justify-between mb-1 font-semibold ${isActive ? 'mt-3' : 'mt-2'}`}>
-          <div className={`${isActive ? 'text-xl' : 'text-md'}`}>{isActive ? launch.name : launch.rocket.configuration.full_name}</div>
-          <div className={`pl-6 ${isActive ? 'text-md' : 'text-sm'}`}><Time launchTime={launch.net} /></div>
+          <div className={`${isActive ? 'text-md sm:text-xl' : 'text-md'}`}>{isActive ? launch.name : launch.rocket.configuration.full_name}</div>
+          <div className={`pl-6 ${isActive ? 'text-xs sm:text-md' : 'text-xs sm:text-sm'}`}><Time launchTime={launch.net} /></div>
         </div>
       </Link>
       <div className={`text-opacity text-sm ${!isActive ? 'hidden' : ''}`}>
@@ -53,7 +53,7 @@ export default function LaunchMapItem({ launch, isActive, setActive, setCenterMa
         <span>{launch.pad.location.name}</span>
       </div>
       {launch.mission && (
-        <p className={`text-opacity overflow-hidden ${isActive ? 'mt-4 h-auto' : 'h-0'}`}>
+        <p className={`text-opacity overflow-hidden hidden sm:block  ${isActive ? 'mt-4 h-auto' : 'h-0'}`}>
           {expanded ? launch.mission.description : launch.mission.description.length > 150 ? `${launch.mission.description.substring(0, 150)}... ` : launch.mission.description}
           {launch.mission.description.length > 150 ? <button className="ml-1" onClick={() => setExpanded(!expanded)}>{expanded ? 'Less' : 'More'}</button> : ''}
         </p>

@@ -38,7 +38,7 @@ const LaunchMapList = ({ launches, setCenterMap }) => {
   const bind = useDrag(state => handleDrag(state), { drag: { bounds: { left: -4000, right: 0 } } });
 
   return (
-    <StyledLaunchListDiv {...bind()} ref={container} className="absolute flex items-end z-10 w-screen bottom-8 left-4 sm:bottom-12 sm:left-0">
+    <StyledLaunchListDiv {...bind()} ref={container} className="absolute flex items-end z-10 w-screen overflow-hidden bottom-8 left-4 sm:bottom-12 sm:left-0">
       {launches.map((launch, index) => (
         <animated.div style={{ transform: x.interpolate(value => `translate3d(${value}px, 0px, 0px)`) }} key={launch.id}>
           <LaunchMapItem launch={launch} isActive={index === activeIndex} setActive={() => setActiveIndex(index)} setCenterMap={setCenterMap} />
