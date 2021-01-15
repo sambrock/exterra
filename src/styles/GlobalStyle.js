@@ -147,6 +147,11 @@ const GlobalStyle = createGlobalStyle`
     color: var(--white);
     text-transform: none;
     text-decoration: none;
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
   }
 
   button {
