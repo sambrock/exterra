@@ -9,7 +9,7 @@ module.exports = {
       xl: '1440px',
     },
     colors: {
-      'black': 'var*--black)',
+      'black': 'var(--black)',
       'dark-blue': 'var(--dark-blue)',
       'dark-blue-2': 'var(--dark-blue-2)',
       'opacity': 'var(--white-opacity)',

@@ -35,7 +35,7 @@ export default function LaunchMapItem({ launch, isActive, setActive, setCenterMa
 
   return (
     <StyledContainerDiv
-      className={`flex flex-col cursor-pointer mx-4 sm:mx-8 select-none ${isActive ? 'active' : 'inactive'}`}
+      className={`flex flex-col cursor-pointer mr-8 sm:mr-16 select-none ${isActive ? 'active' : 'inactive'}`}
       style={containerProps}
       onClick={() => handleClick()}
       onMouseOver={() => setHover(true)}

@@ -6,8 +6,7 @@ import theme from './styles/theme';
 import './styles/tailwind.css';
 
 import { Previous, LaunchDetails, LaunchMap, Rockets, Upcoming, RocketCompare } from './pages';
-import { Header } from './components';
-import Head from './components/Head';
+import { Header, Head } from './components';
 
 export default function App() {
   return (
