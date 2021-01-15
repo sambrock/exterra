@@ -1,9 +1,18 @@
-import Logo from '../../images/logo.svg';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const Header = () => (
-  <header className="fixed top-0 px-4 py-6 sm:p-12 z-10">
-    <div className="w-28 sm:w-40"><a href="/"><img src={Logo} alt="Logo" /></a></div>
-  </header>
-)
+import Logo from '../../images/logo.svg';
+import Menu from './Menu';
+
+const Header = () => {
+  const [active, setActive] = useState(false);
+
+  return (
+    <header className={`fixed w-screen items-center flex justify-between top-0 px-4 py-6 md:p-12 z-10 ${active ? 'bg-dark-blue' : ''}`}>
+      <div className="w-28 sm:w-40"><Link to="/"><img src={Logo} alt="Logo" /></Link></div>
+      <Menu active={active} setActive={setActive}/>
+    </header>
+  )
+}
 
 export default Header;
