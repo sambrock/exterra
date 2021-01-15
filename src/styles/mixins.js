@@ -1,20 +1,6 @@
 import { css } from 'styled-components';
 
 const mixins = {
-  flexCenter: css`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  `,
-  flexBetween: css`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  `,
-  heading: css`
-    color: var(--white);
-    font-weight: 600;
-  `,
   tag: css`
     font-size: var(--fz-xxs);
     letter-spacing: 1.6px;
@@ -29,10 +15,6 @@ const mixins = {
     font-weight: 600;
     max-height: 19px;
     line-height: 100%;
-  `,
-  pageContainer: css`
-    width: 800px;
-    margin: 120px auto;
   `,
   sectionH2: css`
     display: flex;
@@ -53,10 +35,10 @@ const mixins = {
   `,
   label: css`
     text-transform: uppercase;
-    /* font-size: var(--fz-sm); */
     font-weight: 500;
     letter-spacing: 1.5px;
     color: var(--white-opacity);
+    /* margin-right: 12px; */
   `,
   progressBar: css`
     width: 100%;
@@ -94,6 +76,15 @@ const mixins = {
       object-fit: cover;
       width: auto;
     }
+  `,
+  btn: css`
+    display: inline-block;
+    color: var(--white-opacity);
+    font-size: var(--fz-sm);
+    font-weight: 500;
+    letter-spacing: .6px;
+    padding: 0 0 2px 0;
+    border-bottom: 1px dotted var(--white-opacity);
   `,
 };
 

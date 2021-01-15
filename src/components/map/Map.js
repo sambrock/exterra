@@ -10,6 +10,7 @@ import LaunchMarkerMultple from './LaunchMarkerMultple';
 const Mapbox = ReactMapboxGl({
   accessToken: mapbox.accessToken,
   minZoom: mapbox.zoom.min,
+  antialias: true,
 });
 
 export default function Map({ launches, centerMap }) {

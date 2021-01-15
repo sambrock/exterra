@@ -41,13 +41,13 @@ const Mission = ({ agency }) => {
       <p className="text-opacity text-sm my-3 px-2 sm:px-6">{agency.description}</p>
       <div className="grid grid-cols-2 my-12 px-2 sm:px-6">
         {agency.total_launch_count !== 0 && (
-          <div>
+          <div className="mr-4">
             <h3 className="text-sm">Launches</h3>
             <ProgressBar data={launchData} />
           </div>
         )}
         {agency.attempted_landings !== 0 && (
-          <div>
+          <div className="ml-4">
             <h3 className="text-sm">Landings</h3>
             <ProgressBar data={landingData} />
           </div>

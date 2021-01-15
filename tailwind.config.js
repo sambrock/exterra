@@ -11,7 +11,7 @@ module.exports = {
     colors: {
       'black': 'var*--black)',
       'dark-blue': 'var(--dark-blue)',
-      'dark-blue2': 'var(--dark-blue-2)',
+      'dark-blue-2': 'var(--dark-blue-2)',
       'opacity': 'var(--white-opacity)',
       'opacity-2': 'var(--white-opacity-2)',
       'green': 'var(--green)',

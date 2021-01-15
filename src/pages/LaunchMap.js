@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react';
 
 import { getUpcomingLaunches } from '../api';
-import LaunchList from '../components/LaunchList';
+import LaunchMapList from '../components/LaunchMapList';
 import Map from '../components/map/Map';
-import { mapbox } from '../config';
 
 export default function Launches() {
   const [upcoming, setUpcoming] = useState('');
   const [centerMap, setCenterMap] = useState();
-
 
   useEffect(() => {
     getUpcomingLaunches()
@@ -19,7 +17,7 @@ export default function Launches() {
 
   return (
     <div className="max-h-screen overflow-hidden">
-      <LaunchList launches={upcoming} setCenterMap={setCenterMap} />
+      <LaunchMapList launches={upcoming} setCenterMap={setCenterMap} />
       <div id="map">
         <Map launches={upcoming} centerMap={centerMap} />
       </div>

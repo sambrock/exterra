@@ -161,20 +161,17 @@ const GlobalStyle = createGlobalStyle`
     
     &:focus {
       border-radius: none;
-      outline: 1px solid var(--white-opacity);
+      outline: 1px dotted var(--white-opacity-2);
     }
   }
 
-  // Override mapbox font
   .mapboxgl-map {
-    font-family: inherit;
+    font-family: inherit; // Override mapbox font
   }
 
   .mapboxgl-ctrl-bottom-left, .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
-    display: none;
+    display: none;  // hide mapbox links
   }
-
-
 `;
 
 export default GlobalStyle;

@@ -1,7 +1,6 @@
 module.exports = {
   api: {
-    // baseURL: 'https://ll.thespacedevs.com/2.1.0/launch',
-    baseURL: 'https://spacelaunchnow.me/api/3.5.0',
+    baseURL: 'https://ll.thespacedevs.com/2.1.0',
     devURL: 'https://lldev.thespacedevs.com/2.1.0', // dev endpoint, no throttling / limits, works fine for legacy data
   },
 

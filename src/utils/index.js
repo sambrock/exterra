@@ -1,19 +1,11 @@
 import { DateTime } from "luxon";
 import _ from 'lodash';
 
-export const getTime = (launchDateTime) => {
-  const start = DateTime.local();
-  const end = launchDateTime;
+export const getCountdown = (launchDateTime) => {
+  const { milliseconds } = DateTime.fromISO(launchDateTime).diff(DateTime.local(), ['days', 'milliseconds']).toObject();
+  const value = DateTime.fromMillis(Math.abs(milliseconds)).toFormat('TT')
 
-  const { days, milliseconds } = DateTime.fromISO(end).diff(start, ['days', 'milliseconds']).toObject();
-
-  const time = {
-    countingDown: Math.sign(milliseconds) === 1 ? true : false,
-    days: days,
-    value: DateTime.fromMillis(Math.abs(milliseconds)).toFormat('hh:mm:ss'),
-  };
-
-  return time;
+  return value;
 }
 
 export const groupByLocation = (launchArr) => {
@@ -27,7 +19,7 @@ export const groupByLocation = (launchArr) => {
   const multiple = [];
 
   Object.values(launchesGrouped).map(launch => {
-    if(launch.length === 1) {
+    if (launch.length === 1) {
       single.push(launch[0]);
     } else {
       multiple.push(launch)
