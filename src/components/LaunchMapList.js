@@ -9,6 +9,10 @@ import LaunchMapItem from './LaunchMapItem';
 const StyledLaunchListDiv = styled(animated.div)`
   touch-action: none;
 
+  .touch-div {
+    /* touch-action: none; */
+  }
+
   @media(max-width: 480px) {
     bottom: 2rem;
     left: 1rem;
@@ -35,12 +39,12 @@ const LaunchMapList = ({ launches, setCenterMap }) => {
     set({ x: [-closest, 0] });
   };
 
-  const bind = useDrag(state => handleDrag(state), { drag: { bounds: { left: -4000, right: 0 } } });
+  const bind = useDrag(state => handleDrag(state), { drag: { bounds: { left: -4000, right: 0 } }, axis: 'x' });
 
   return (
     <StyledLaunchListDiv {...bind()} ref={container} className="fixed flex items-end z-10 w-screen overflow-hidden bottom-8 left-4 sm:bottom-12 sm:left-0">
       {launches.map((launch, index) => (
-        <animated.div style={{ transform: x.interpolate(value => `translate3d(${value}px, 0px, 0px)`) }} key={launch.id}>
+        <animated.div className="touch-div" style={{ transform: x.interpolate(value => `translate3d(${value}px, 0px, 0px)`) }} key={launch.id}>
           <LaunchMapItem launch={launch} isActive={index === activeIndex} setActive={() => setActiveIndex(index)} setCenterMap={setCenterMap} />
         </animated.div>
       ))}
