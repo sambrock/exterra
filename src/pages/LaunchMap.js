@@ -1,11 +1,12 @@
 import { Suspense, useEffect, useState, lazy } from 'react';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 import { getUpcomingLaunches } from '../api';
 import { LaunchMapList } from '../components';
 
 const Map = lazy(() => import('../components/map/Map'));
 
-const renderLoader = () => <h1 className="bg-white">Loading</h1>;
+const renderLoader = () => <div className="flex justify-center items-center w-screen h-screen"><ClipLoader color='#fffff' size={35} /></div>;
 
 export default function Launches() {
   const [upcoming, setUpcoming] = useState('');
