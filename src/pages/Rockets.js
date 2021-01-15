@@ -1,41 +1,57 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { getRockets } from '../api';
 import RocketItem from '../components/RocketItem';
 
-const StyledPageContainer = styled.div`
-  ${props => props.theme.mixins.pageContainer}
+const StyledLinkDiv = styled.div`
+  border: 1px dotted var(--white-opacity-2);
 `;
 
-export default function Rockets(props) {
-  const [rockets, setRockets] = useState('');
-  const [compare, setCompare] = useState('');
+export default function Rockets() {
+  const [rockets, setRockets] = useState([]);
+  const [offset, setOffset] = useState(0);
+  const [compare, setCompare] = useState([]);
 
-  console.log(compare);
+  const loader = useRef(null);
 
   useEffect(() => {
-    getRockets()
-      .then(data => setRockets(data.results))
+    getRockets(offset)
+      .then(data => setRockets([...rockets, ...data.results]))
+  }, [offset]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, { root: null, rootMargin: "20px", threshold: 1.0 });
+    
+    if (loader.current) {
+      observer.observe(loader.current)
+    }
   }, []);
-
-  const handleAddCompareId = (id) => {
-    if(compare.length > 1) return console.error('Compare full.');
-
-    return setCompare([...compare, id]);
+  
+  const handleObserver = (entities) => {
+    const target = entities[0];
+    if (target.isIntersecting) {
+      setOffset((offset) => offset + 50)
+    }
   }
-
 
   if (!rockets) return <div></div>;
 
   return (
-    <StyledPageContainer>
-      <h1>Rockets</h1>
-      <Link to={`/rockets/compare/${compare[0]}-vs-${compare[1]}`}>Compare!!</Link>
-      <div>
-        {rockets.map(rocket => <RocketItem rocket={rocket} addCompareId={handleAddCompareId} />)}
+    <main>
+      <div className="flex flex-grow-0 justify-between items-center mb-8">
+        <h1>Rockets</h1>
+        {compare.length > 1 && (
+          <StyledLinkDiv>
+            <Link to={`/rockets/compare/${compare[0]}-vs-${compare[1]}`} className="flex items-center font-semibold ml-2">Compare<i className="material-icons mt-1">navigate_next</i></Link>
+          </StyledLinkDiv>
+        )}
       </div>
-    </StyledPageContainer>
+      <div>
+        {rockets.map(rocket => <RocketItem rocket={rocket} setCompare={setCompare} locked={compare.length > 1} />)}
+      </div>
+      <div className="loading" ref={loader}>Loading...</div>
+    </main>
   )
 }
