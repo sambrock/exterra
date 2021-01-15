@@ -10,7 +10,7 @@ module.exports = {
 
   mapbox: {
     accessToken: 'pk.eyJ1IjoieHNhbWJyb2NrIiwiYSI6ImNraWYxaHplYzBhOTYzMHFrZGVjbmk2azYifQ.YvpDpSvqa6V1SC3EVEEG3A',
-    style: 'mapbox://styles/xsambrock/ckjrql6mh4ryq1ap3p7qrdkkv',
+    style: 'mapbox://styles/xsambrock/ckjrql6mh4ryq1ap3p7qrdkkv?optimize=true',
     containerStyle: { height: '100vh', width: '100vw' },
     center: { longitude: -95.0364, latitude: 32.8951 },
     zoom: { min: 3, default: 4 }
