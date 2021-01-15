@@ -33,7 +33,7 @@ export default function LaunchDetails({ match }) {
       {launch.mission && (
         <p className="mt-6 mb-12" dangerouslySetInnerHTML={{ __html: launch.mission.description.replace(/(?:\r\n|\r|\n)/g, '<br>') }}></p>
       )}
-      {launch.image_url && (
+      {launch.image && (
         <StyledImgContainer className="my-6">
           <img src={launch.image} alt={launch.name} />
         </StyledImgContainer>
