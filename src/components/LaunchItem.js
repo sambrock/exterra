@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import StatusBar from './StatusBar';
-import Time from './Time';
+
+import { StatusBar, Time } from '.';
 
 const LaunchItem = ({launch}) => (
   <div className="flex flex-col cursor-pointer mb-6 sm:mb-12">

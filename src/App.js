@@ -1,17 +1,12 @@
-import { ThemeProvider } from "styled-components";
-import GlobalStyle from "./styles/GlobalStyle";
+import { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import theme from "./styles/theme";
-import Header from "./components/layout/Header";
-import LaunchDetails from "./pages/LaunchDetails";
-import LaunchMap from "./pages/LaunchMap";
-import Rockets from "./pages/Rockets";
-import Upcoming from "./pages/Upcoming";
-import Previous from "./pages/Previous";
-import RocketCompare from "./pages/RocketCompare";
+import GlobalStyle from './styles/GlobalStyle';
+import theme from './styles/theme';
 import './styles/tailwind.css';
 
+import { Previous, LaunchDetails, LaunchMap, Rockets, Upcoming, RocketCompare } from './pages';
+import { Header } from './components';
 
 export default function App() {
   return (

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { getRockets } from '../api';
-import RocketItem from '../components/RocketItem';
+import { RocketItem } from '../components';
 
 const StyledLinkDiv = styled.div`
   border: 1px dotted var(--white-opacity-2);
@@ -18,7 +18,7 @@ export default function Rockets() {
 
   useEffect(() => {
     getRockets(offset)
-      .then(data => setRockets([...rockets, ...data.results]))
+      .then(data => setRockets(r => [...r, ...data.results]))
   }, [offset]);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ export default function Rockets() {
         )}
       </div>
       <div>
-        {rockets.map(rocket => <RocketItem rocket={rocket} setCompare={setCompare} locked={compare.length > 1} />)}
+        {rockets.map(rocket => <RocketItem key={rocket.id} rocket={rocket} setCompare={setCompare} locked={compare.length > 1} />)}
       </div>
       <div className="loading" ref={loader}>Loading...</div>
     </main>

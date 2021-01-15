@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { getUpcomingLaunches } from '../api';
-import LaunchMapList from '../components/LaunchMapList';
-import Map from '../components/map/Map';
+import { Map, LaunchMapList } from '../components';
 
 export default function Launches() {
   const [upcoming, setUpcoming] = useState('');

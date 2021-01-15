@@ -40,8 +40,8 @@ const LaunchMapList = ({ launches, setCenterMap }) => {
   return (
     <StyledLaunchListDiv {...bind()} ref={container} className="absolute flex items-end z-10 w-screen bottom-8 left-4 sm:bottom-12 sm:left-0">
       {launches.map((launch, index) => (
-        <animated.div style={{ transform: x.interpolate(value => `translate3d(${value}px, 0px, 0px)`) }} >
-          <LaunchMapItem key={launch.id} launch={launch} isActive={index === activeIndex} setActive={() => setActiveIndex(index)} setCenterMap={setCenterMap} />
+        <animated.div style={{ transform: x.interpolate(value => `translate3d(${value}px, 0px, 0px)`) }} key={launch.id}>
+          <LaunchMapItem launch={launch} isActive={index === activeIndex} setActive={() => setActiveIndex(index)} setCenterMap={setCenterMap} />
         </animated.div>
       ))}
     </StyledLaunchListDiv>

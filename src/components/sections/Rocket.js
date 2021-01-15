@@ -18,39 +18,39 @@ const Rocket = ({ rocket }) => (
   <section>
     <StyledSectionHeader>Rocket <span className="hl"></span></StyledSectionHeader>
     <StyledRow>
-      <span class="label">Name</span>
+      <span className="label">Name</span>
       <span>{rocket.configuration.full_name}</span>
     </StyledRow>
     <StyledRow>
-      <span class="label">Family</span>
+      <span className="label">Family</span>
       <span>{rocket.configuration.family}</span>
     </StyledRow>
     <StyledRow>
-      <span class="label">Stages</span>
+      <span className="label">Stages</span>
       <span>{rocket.configuration.max_stage}</span>
     </StyledRow>
     <StyledRow>
-      <span class="label">Length</span>
+      <span className="label">Length</span>
       <span>{rocket.configuration.length}<span className="unit">m</span></span>
     </StyledRow>
     <StyledRow>
-      <span class="label">Diameter</span>
+      <span className="label">Diameter</span>
       <span>{rocket.configuration.diameter}<span className="unit">m</span></span>
     </StyledRow>
     <StyledRow>
-      <span class="label">Launch mass</span>
+      <span className="label">Launch mass</span>
       <span>{(rocket.configuration.launch_mass * 1000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}<span className="unit">kg</span></span>
     </StyledRow>
     <StyledRow>
-      <span class="label">Payload to LEO</span>
+      <span className="label">Payload to LEO</span>
       <span>{rocket.configuration.leo_capacity ? (rocket.configuration.leo_capacity).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : '-'}<span className="unit">kg</span></span>
     </StyledRow>
     <StyledRow>
-      <span class="label">Payload to GTO</span>
+      <span className="label">Payload to GTO</span>
       <span>{rocket.configuration.gto_capacity ? (rocket.configuration.gto_capacity).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : '-'}<span className="unit">kg</span></span>
     </StyledRow>
-    <StyledRow className="row-border-btm">
-      <span class="label">Thrust</span>
+    <StyledRow>
+      <span className="label">Thrust</span>
       <span>{rocket.configuration.thrust ? (rocket.configuration.to_thrust).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : '-'}<span className="unit">kg</span></span>
     </StyledRow>
   </section>

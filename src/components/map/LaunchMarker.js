@@ -11,7 +11,7 @@ export default function LaunchMarker({ launch }) {
       <div className="mr-3">
         <img className="h-4 mt-2" src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${getCountryISO2(launch.pad.location.country_code)}.svg`} alt="" />
       </div>
-      <div className="flex flex-col mt-2" statusId={launch.status.id}>
+      <div className="flex flex-col mt-2">
         <span className="font-bold text-sm text-white">{launch.rocket.configuration.full_name}</span>
         <span className="text-opacity">{launch.launch_service_provider.name}</span>
         <div className="flex items-center mt-1">

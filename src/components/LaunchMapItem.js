@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { animated, useSpring } from 'react-spring';
 import { Link } from 'react-router-dom';
 
-import StatusBar from './StatusBar';
-import Time from './Time';
+import { StatusBar, Time } from '.';
 
 const StyledContainerDiv = styled(animated.div)`
   width: 350px;
@@ -38,7 +37,6 @@ export default function LaunchMapItem({ launch, isActive, setActive, setCenterMa
     <StyledContainerDiv
       className={`flex flex-col cursor-pointer mx-4 sm:mx-8 select-none ${isActive ? 'active' : 'inactive'}`}
       style={containerProps}
-      isActive={isActive}
       onClick={() => handleClick()}
       onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}

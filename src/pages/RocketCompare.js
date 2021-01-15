@@ -40,25 +40,29 @@ const StyledSectionHeader = styled.h2`
 export default function RocketCompare({ match }) {
   const [rocketA, setRocketA] = useState({});
   const [rocketB, setRocketB] = useState({});
+  const [compareIds, setCompareIds] = useState([]);
 
   const rockets = [rocketA, rocketB];
 
-  const compareIds = match.params.compare.split('-vs-').map(num => parseInt(num));
+  useEffect(() => {
+    setCompareIds(match.params.compare.split('-vs-').map(num => parseInt(num)));
+  }, [match])
 
   useEffect(() => {
+    if(compareIds.length < 1) return;
     getRocketById(compareIds[0])
       .then(data => setRocketA(data));
 
     getRocketById(compareIds[1])
       .then(data => setRocketB(data));
-  }, []);
+  }, [compareIds]);
 
   if (!rocketA && !rocketB) return <div></div>;
 
   return (
     <main>
       <div className="grid grid-cols-2 gap-4 sm:gap-12">
-        {rockets.map(rocket => <StyledImgContainer><img src={rocket.image_url} alt={rocket.name} /></StyledImgContainer>)}
+        {rockets.map(rocket => <StyledImgContainer>{rocket.image_url ? <img src={rocket.image_url} alt={rocket.name} /> : <i className="m-auto material-icons text-opacity-2 text-heading">image_not_supported</i>}</StyledImgContainer>)}
       </div>
       <div className="grid grid-cols-2 gap-12 py-6">
         {rockets.map(rocket => <div className="text-center font-bold text-xxl sm:text-heading">{rocket.name}</div>)}

@@ -11,7 +11,7 @@ const Time = ({ launchTime }) => {
 
   useEffect(() => {
     Math.abs(hours) < 24 ? setTime(getCountdown(launchTime)) : setTime(launch.toFormat('DD'));
-  }, []);
+  }, [hours, launch, launchTime]);
 
   useEffect(() => {
     if (Math.abs(hours) > 24) return;
@@ -21,7 +21,7 @@ const Time = ({ launchTime }) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [time]);
+  }, [time, setTime, launchTime, hours]);
 
   if (!time) return <div></div>;
 

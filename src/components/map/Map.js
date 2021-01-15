@@ -1,4 +1,4 @@
-import { createRef, useEffect, useRef, useState } from 'react';
+import { createRef, useEffect } from 'react';
 import ReactMapboxGl, { Marker } from 'react-mapbox-gl';
 
 import LaunchMarker from './LaunchMarker';

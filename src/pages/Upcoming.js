@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { getUpcomingLaunches } from '../api';
-import LaunchItem from '../components/LaunchItem';
+import { LaunchItem } from '../components/';
 
 export default function Upcoming() {
   const [upcoming, setUpcoming] = useState([]);
@@ -16,7 +16,7 @@ export default function Upcoming() {
       <h1 className="mb-12">Upcoming Launches</h1>
       <section>
         {upcoming.map(launch => (
-         <LaunchItem launch={launch} />
+          <LaunchItem launch={launch} />
         ))}
       </section>
     </main>

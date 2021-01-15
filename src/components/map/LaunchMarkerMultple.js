@@ -18,7 +18,7 @@ const StyledMarkersContainer = styled.div`
 const LaunchMarkerMultple = ({ launches }) => (
   <StyledMarkersContainer>
     {launches.map(launch => (
-      <LaunchMarker className="" launch={launch} />
+      <LaunchMarker key={launch.id} launch={launch} />
     ))}
   </StyledMarkersContainer>
 );

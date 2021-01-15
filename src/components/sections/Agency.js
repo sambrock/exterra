@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import getCountryISO2 from 'country-iso-3-to-2';
 
-import ProgressBar from '../ProgressBar';
+import { ProgressBar } from '..';
 
 const StyledDataDiv = styled.div.attrs({ className: 'text-base sm:text-xl font-semibold' })`
   .label {

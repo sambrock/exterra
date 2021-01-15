@@ -38,7 +38,6 @@ const mixins = {
     font-weight: 500;
     letter-spacing: 1.5px;
     color: var(--white-opacity);
-    /* margin-right: 12px; */
   `,
   progressBar: css`
     width: 100%;
@@ -49,12 +48,9 @@ const mixins = {
   `,
   row: css`
     align-items: center;
+    border-top: 1px var(--dark-blue-2) solid;
 
-    &.row-border {
-      border-top: 1px var(--dark-blue-2) solid;
-    }
-
-    &.row-border-btm {
+    &:last-child {
       border-top: 1px var(--dark-blue-2) solid;
       border-bottom: 1px var(--dark-blue-2) solid;
     }

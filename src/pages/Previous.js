@@ -1,17 +1,7 @@
-import { useRef } from 'react';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { flattenDeep } from 'lodash';
+import { useRef, useState, useEffect } from 'react';
 
 import { getPreviousLaunches } from '../api';
-import StatusBar from '../components/StatusBar';
-import Time from '../components/Time';
-import LaunchItem from '../components/LaunchItem';
-
-const StyledBtnDiv = styled.div`
-  ${props => props.theme.mixins.btn}
-`;
+import { LaunchItem } from '../components';
 
 export default function Previous() {
   const [previous, setPrevious] = useState([]);
@@ -21,7 +11,7 @@ export default function Previous() {
 
   useEffect(() => {
     getPreviousLaunches(offset)
-      .then(data => setPrevious([...previous, ...data.results.filter(launch => launch.status.abbrev !== 'TBD')]));
+      .then(data => setPrevious(p => [...p, ...data.results.filter(launch => launch.status.abbrev !== 'TBD')]));
   }, [offset]);
 
   useEffect(() => {

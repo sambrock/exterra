@@ -1,14 +1,8 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import Mission from '../components/sections/Mission';
-import Agency from '../components/sections/Agency';
-import StatusBar from '../components/StatusBar';
-import Time from '../components/Time';
-import Rocket from '../components/sections/Rocket';
-import Pad from '../components/sections/Pad';
 import { getLaunchById } from '../api';
-
+import { StatusBar, Mission, Agency, Time, Rocket, Pad } from '../components';
 
 const StyledImgContainer = styled.div`
   ${props => props.theme.mixins.imgContainer}
@@ -20,8 +14,8 @@ export default function LaunchDetails({ match }) {
 
   useEffect(() => {
     getLaunchById(match.params.id)
-      .then(data => setLaunch(data))
-  }, []);
+      .then(data => setLaunch(data));
+  }, [match]);
 
   if (!launch) return <div></div>;
 
