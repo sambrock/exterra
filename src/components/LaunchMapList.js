@@ -4,7 +4,7 @@ import { useSpring, animated } from 'react-spring';
 import { useDrag, } from 'react-use-gesture';
 import { clamp } from 'lodash';
 
-import LaunchItem from './LaunchItem';
+import LaunchMapItem from './LaunchMapItem';
 
 const StyledLaunchListDiv = styled(animated.div)`
   touch-action: none;
@@ -15,7 +15,7 @@ const StyledLaunchListDiv = styled(animated.div)`
   }
 `;
 
-const LaunchList = ({ launches, setCenterMap }) => {
+const LaunchMapList = ({ launches, setCenterMap }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const container = useRef();
@@ -41,11 +41,11 @@ const LaunchList = ({ launches, setCenterMap }) => {
     <StyledLaunchListDiv {...bind()} ref={container} className="absolute flex items-end z-10 w-screen bottom-8 left-4 sm:bottom-12 sm:left-0">
       {launches.map((launch, index) => (
         <animated.div style={{ transform: x.interpolate(value => `translate3d(${value}px, 0px, 0px)`) }} >
-          <LaunchItem key={launch.id} launch={launch} isActive={index === activeIndex} setActive={() => setActiveIndex(index)} setCenterMap={setCenterMap} />
+          <LaunchMapItem key={launch.id} launch={launch} isActive={index === activeIndex} setActive={() => setActiveIndex(index)} setCenterMap={setCenterMap} />
         </animated.div>
       ))}
     </StyledLaunchListDiv>
   )
 }
 
-export default LaunchList;
+export default LaunchMapList;
