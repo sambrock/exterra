@@ -15,7 +15,7 @@ export default function Launches() {
   if (!upcoming) return <div></div>;
 
   return (
-    <div className="max-h-screen w-screen overflow-hidden">
+    <div className="max-h-screen w-screen">
       <LaunchMapList launches={upcoming} setCenterMap={setCenterMap} />
       <div id="map">
         <Map launches={upcoming} centerMap={centerMap} />
