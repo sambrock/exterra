@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { Menu } from '..';
 import Logo from '../../images/logo.svg';
-import Menu from './Menu';
+
 
 const Header = () => {
   const [active, setActive] = useState(false);
