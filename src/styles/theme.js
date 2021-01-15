@@ -6,6 +6,7 @@ const theme = {
     2: 'var(--grey)', // To be determined
     3: 'var(--green)', // Launch success
     4: 'var(--red)', // Launch failure
+    5: 'var(--grey)', // Launch on hold
     6: 'var(--blue)', // Launch in flight
     7: 'var(--red)', // Partial failure
     8: 'var(--grey)' // To be confirmed
