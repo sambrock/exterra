@@ -1,0 +1,10 @@
+query getUpcomingLaunches {
+  upcoming {
+    id
+    name
+    pad {
+      longitude
+      latitude
+    }
+  }
+}
