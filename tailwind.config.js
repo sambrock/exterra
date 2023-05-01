@@ -2,7 +2,23 @@
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['var(--font-sans)', 'sans-serif'],
+      },
+
+      colors: {
+        'map-water': '#030917',
+        'map-land': '#141e43',
+
+        'status-go': '#E8A300', // Go for launch
+        'status-tbd': '#FEFEFF20', // TBD
+        'status-success': '#4caf50', // Success
+        'status-failure': '#FF0602', // Failure
+        'status-hold': '#E8A300', // Hold
+        'status-in-flight': '#01FFD8', // In flight
+      },
+    },
   },
   plugins: [],
 };

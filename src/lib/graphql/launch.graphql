@@ -2,9 +2,35 @@ query getUpcomingLaunches {
   upcoming {
     id
     name
-    pad {
-      longitude
-      latitude
+    failreason
+    hashtag
+    holdreason
+    image
+    inhold
+    tbddate
+    tbdtime
+    url
+    webcast_live
+    window_end
+    window_start
+    probability
+    launch_service_provider {
+      id
+      name
+    }
+    status {
+      id
+      abbrev
+      name
+      description
+    }
+    mission {
+      id
+      description
+    }
+    program {
+      id
+      name
     }
   }
 }

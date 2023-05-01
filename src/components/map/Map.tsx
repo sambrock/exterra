@@ -1,16 +1,16 @@
 'use client';
 
-import { default as ReactMapGL } from 'react-map-gl';
+import { default as MapGL } from 'react-map-gl';
+
+import { MAPBOX_ACCESS_TOKEN, MAPBOX_MAP_STYLE, MAP_MAX_ZOOM, MAP_MIN_ZOOM } from '@/lib/constants';
 
 export const Map = () => {
   return (
-    <div className="w-screen h-screen fixed top-0 left-0">
-      <ReactMapGL
-        mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
-        initialViewState={{}}
-        // style={{ width: '100vw', height: '100vh' }}
-        mapStyle="mapbox://styles/xsambrock/ckjrql6mh4ryq1ap3p7qrdkkv"
-      />
-    </div>
+    <MapGL
+      mapboxAccessToken={MAPBOX_ACCESS_TOKEN}
+      maxZoom={MAP_MAX_ZOOM}
+      minZoom={MAP_MIN_ZOOM}
+      mapStyle={MAPBOX_MAP_STYLE}
+    />
   );
 };

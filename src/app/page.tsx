@@ -1,6 +1,7 @@
-import { getClient } from '@/lib/client';
 import { GetUpcomingLaunchesDocument, type GetUpcomingLaunchesQuery } from '@/__generated__/graphql';
-import { Map } from '@/components/map/Map';
+import { getClient } from '@/lib/client';
+import { LaunchList } from '@/components/launch/LaunchList';
+import { LaunchItem } from '@/components/launch/LaunchItem';
 
 export default async function Home() {
   const client = getClient();
@@ -8,10 +9,13 @@ export default async function Home() {
 
   return (
     <main>
-      {data.upcoming?.map((launch) => (
-        <div key={launch?.id}>{launch?.name}</div>
-      ))}
-      <Map />
+      <div className="absolute right-2 top-1/2 max-w-lg -translate-y-1/2">
+        <LaunchList>
+          {data?.upcoming?.map((launch, index) => (
+            <LaunchItem key={index} launch={launch || {}} />
+          ))}
+        </LaunchList>
+      </div>
     </main>
   );
 }

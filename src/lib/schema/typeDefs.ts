@@ -26,6 +26,22 @@ export const typeDefs = gql`
     location: Location
   }
 
+  type Orbit {
+    id: Int
+    name: String
+    abbrev: String
+  }
+
+  type Mission {
+    id: Int
+    launch_library_id: Int
+    name: String
+    description: String
+    launch_designator: String
+    type: String
+    orbit: Orbit
+  }
+
   type Configuration {
     id: Int
     launch_library_id: Int
@@ -55,10 +71,30 @@ export const typeDefs = gql`
     description: String
   }
 
+  type Agencies {
+  id: Int
+  url: String
+  name: String
+  type: String
+}
+
+type Program {
+  id: Int
+  url: String
+  name: String
+  description: String
+  image_url: String
+  start_date: String
+  end_date: String
+  info_url: String
+  wiki_url: String
+  agencies: [Agencies]
+}
+
   type Results {
     id: String
     url: String
-    launch_library_id: String
+    launch_library_id: Int
     slug: String
     name: String
     net: String
@@ -67,16 +103,16 @@ export const typeDefs = gql`
     inhold: Boolean
     tbdtime: Boolean
     tbddate: Boolean
-    probability: String
+    probability: Int
     holdreason: String
     failreason: String
     hashtag: String
-    mission: String
     webcast_live: Boolean
     image: String
     infographic: String
-    program: [String]
+    program: [Program]
     pad: Pad
+    mission: Mission
     rocket: Rocket
     launch_service_provider: LaunchServiceProvider
     status: Status
