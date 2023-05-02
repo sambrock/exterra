@@ -1,4 +1,5 @@
 import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
+import { BASE_URL } from './constants';
 
 let client: ApolloClient<any> | null = null;
 
@@ -8,7 +9,7 @@ export const getClient = () => {
   if (!client || typeof window === 'undefined') {
     client = new ApolloClient({
       link: new HttpLink({
-        uri: `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/graphql`,
+        uri: `${BASE_URL}/api/graphql`,
       }),
       cache: new InMemoryCache(),
     });
