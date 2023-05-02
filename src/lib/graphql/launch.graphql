@@ -1,5 +1,5 @@
 query getUpcomingLaunches {
-  upcoming {
+    upcoming {
     id
     name
     failreason
@@ -14,6 +14,16 @@ query getUpcomingLaunches {
     window_end
     window_start
     probability
+    tbddate
+    tbdtime
+    pad {
+      name
+      latitude
+      longitude
+      location {
+        name
+      }
+    }
     launch_service_provider {
       id
       name
@@ -26,6 +36,7 @@ query getUpcomingLaunches {
     }
     mission {
       id
+      name
       description
     }
     program {

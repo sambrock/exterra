@@ -91,7 +91,7 @@ type Program {
   agencies: [Agencies]
 }
 
-  type Results {
+  type Launch {
     id: String
     url: String
     launch_library_id: Int
@@ -119,6 +119,6 @@ type Program {
   }
 
   type Query {
-    upcoming: [Results]
+    upcoming: [Launch]
   }
 `;

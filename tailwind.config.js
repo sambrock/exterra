@@ -17,6 +17,8 @@ module.exports = {
         'status-failure': '#FF0602', // Failure
         'status-hold': '#E8A300', // Hold
         'status-in-flight': '#01FFD8', // In flight
+
+        'status-go-radial-gradient': 'radial-gradient(circle, hsla(0, 0%, 100%, 0) 0%, hsla(42, 100%, 45%, .8) 100%)'
       },
     },
   },

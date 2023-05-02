@@ -2,22 +2,10 @@ import { GetUpcomingLaunchesDocument, type GetUpcomingLaunchesQuery } from '@/__
 import { getClient } from '@/lib/client';
 import { LaunchList } from '@/components/launch/LaunchList';
 import { LaunchItem } from '@/components/launch/LaunchItem';
-import { REVALIDATE_API } from '@/lib/constants';
-
-export const getUpcomingLaunches = async () => {
-  const client = getClient();
-  return await client.query<GetUpcomingLaunchesQuery>({
-    query: GetUpcomingLaunchesDocument,
-    context: {
-      fetchOptions: {
-        next: { revalidate: REVALIDATE_API },
-      },
-    },
-  });
-};
 
 export default async function Home() {
-  const { data } = await getUpcomingLaunches();
+  const client = getClient();
+  const { data } = await client.query<GetUpcomingLaunchesQuery>({ query: GetUpcomingLaunchesDocument });
 
   return (
     <main>

@@ -35,6 +35,34 @@ export type Configuration = {
   variant?: Maybe<Scalars['String']>;
 };
 
+export type Launch = {
+  __typename?: 'Launch';
+  failreason?: Maybe<Scalars['String']>;
+  hashtag?: Maybe<Scalars['String']>;
+  holdreason?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  infographic?: Maybe<Scalars['String']>;
+  inhold?: Maybe<Scalars['Boolean']>;
+  launch_library_id?: Maybe<Scalars['Int']>;
+  launch_service_provider?: Maybe<LaunchServiceProvider>;
+  mission?: Maybe<Mission>;
+  name?: Maybe<Scalars['String']>;
+  net?: Maybe<Scalars['String']>;
+  pad?: Maybe<Pad>;
+  probability?: Maybe<Scalars['Int']>;
+  program?: Maybe<Array<Maybe<Program>>>;
+  rocket?: Maybe<Rocket>;
+  slug?: Maybe<Scalars['String']>;
+  status?: Maybe<Status>;
+  tbddate?: Maybe<Scalars['Boolean']>;
+  tbdtime?: Maybe<Scalars['Boolean']>;
+  url?: Maybe<Scalars['String']>;
+  webcast_live?: Maybe<Scalars['Boolean']>;
+  window_end?: Maybe<Scalars['String']>;
+  window_start?: Maybe<Scalars['String']>;
+};
+
 export type LaunchServiceProvider = {
   __typename?: 'LaunchServiceProvider';
   id?: Maybe<Scalars['Int']>;
@@ -104,35 +132,7 @@ export type Program = {
 
 export type Query = {
   __typename?: 'Query';
-  upcoming?: Maybe<Array<Maybe<Results>>>;
-};
-
-export type Results = {
-  __typename?: 'Results';
-  failreason?: Maybe<Scalars['String']>;
-  hashtag?: Maybe<Scalars['String']>;
-  holdreason?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  image?: Maybe<Scalars['String']>;
-  infographic?: Maybe<Scalars['String']>;
-  inhold?: Maybe<Scalars['Boolean']>;
-  launch_library_id?: Maybe<Scalars['Int']>;
-  launch_service_provider?: Maybe<LaunchServiceProvider>;
-  mission?: Maybe<Mission>;
-  name?: Maybe<Scalars['String']>;
-  net?: Maybe<Scalars['String']>;
-  pad?: Maybe<Pad>;
-  probability?: Maybe<Scalars['Int']>;
-  program?: Maybe<Array<Maybe<Program>>>;
-  rocket?: Maybe<Rocket>;
-  slug?: Maybe<Scalars['String']>;
-  status?: Maybe<Status>;
-  tbddate?: Maybe<Scalars['Boolean']>;
-  tbdtime?: Maybe<Scalars['Boolean']>;
-  url?: Maybe<Scalars['String']>;
-  webcast_live?: Maybe<Scalars['Boolean']>;
-  window_end?: Maybe<Scalars['String']>;
-  window_start?: Maybe<Scalars['String']>;
+  upcoming?: Maybe<Array<Maybe<Launch>>>;
 };
 
 export type Rocket = {
@@ -224,6 +224,7 @@ export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Configuration: ResolverTypeWrapper<Configuration>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
+  Launch: ResolverTypeWrapper<Launch>;
   LaunchServiceProvider: ResolverTypeWrapper<LaunchServiceProvider>;
   Location: ResolverTypeWrapper<Location>;
   Mission: ResolverTypeWrapper<Mission>;
@@ -231,7 +232,6 @@ export type ResolversTypes = {
   Pad: ResolverTypeWrapper<Pad>;
   Program: ResolverTypeWrapper<Program>;
   Query: ResolverTypeWrapper<{}>;
-  Results: ResolverTypeWrapper<Results>;
   Rocket: ResolverTypeWrapper<Rocket>;
   Status: ResolverTypeWrapper<Status>;
   String: ResolverTypeWrapper<Scalars['String']>;
@@ -243,6 +243,7 @@ export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
   Configuration: Configuration;
   Int: Scalars['Int'];
+  Launch: Launch;
   LaunchServiceProvider: LaunchServiceProvider;
   Location: Location;
   Mission: Mission;
@@ -250,7 +251,6 @@ export type ResolversParentTypes = {
   Pad: Pad;
   Program: Program;
   Query: {};
-  Results: Results;
   Rocket: Rocket;
   Status: Status;
   String: Scalars['String'];
@@ -272,6 +272,34 @@ export type ConfigurationResolvers<ContextType = any, ParentType extends Resolve
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   variant?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type LaunchResolvers<ContextType = any, ParentType extends ResolversParentTypes['Launch'] = ResolversParentTypes['Launch']> = {
+  failreason?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  hashtag?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  holdreason?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  image?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  infographic?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  inhold?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  launch_library_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  launch_service_provider?: Resolver<Maybe<ResolversTypes['LaunchServiceProvider']>, ParentType, ContextType>;
+  mission?: Resolver<Maybe<ResolversTypes['Mission']>, ParentType, ContextType>;
+  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  net?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  pad?: Resolver<Maybe<ResolversTypes['Pad']>, ParentType, ContextType>;
+  probability?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  program?: Resolver<Maybe<Array<Maybe<ResolversTypes['Program']>>>, ParentType, ContextType>;
+  rocket?: Resolver<Maybe<ResolversTypes['Rocket']>, ParentType, ContextType>;
+  slug?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  status?: Resolver<Maybe<ResolversTypes['Status']>, ParentType, ContextType>;
+  tbddate?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  tbdtime?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  webcast_live?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  window_end?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  window_start?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -343,35 +371,7 @@ export type ProgramResolvers<ContextType = any, ParentType extends ResolversPare
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  upcoming?: Resolver<Maybe<Array<Maybe<ResolversTypes['Results']>>>, ParentType, ContextType>;
-};
-
-export type ResultsResolvers<ContextType = any, ParentType extends ResolversParentTypes['Results'] = ResolversParentTypes['Results']> = {
-  failreason?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  hashtag?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  holdreason?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  image?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  infographic?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  inhold?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
-  launch_library_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  launch_service_provider?: Resolver<Maybe<ResolversTypes['LaunchServiceProvider']>, ParentType, ContextType>;
-  mission?: Resolver<Maybe<ResolversTypes['Mission']>, ParentType, ContextType>;
-  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  net?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  pad?: Resolver<Maybe<ResolversTypes['Pad']>, ParentType, ContextType>;
-  probability?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  program?: Resolver<Maybe<Array<Maybe<ResolversTypes['Program']>>>, ParentType, ContextType>;
-  rocket?: Resolver<Maybe<ResolversTypes['Rocket']>, ParentType, ContextType>;
-  slug?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  status?: Resolver<Maybe<ResolversTypes['Status']>, ParentType, ContextType>;
-  tbddate?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
-  tbdtime?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
-  url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  webcast_live?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
-  window_end?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  window_start?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+  upcoming?: Resolver<Maybe<Array<Maybe<ResolversTypes['Launch']>>>, ParentType, ContextType>;
 };
 
 export type RocketResolvers<ContextType = any, ParentType extends ResolversParentTypes['Rocket'] = ResolversParentTypes['Rocket']> = {
@@ -391,6 +391,7 @@ export type StatusResolvers<ContextType = any, ParentType extends ResolversParen
 export type Resolvers<ContextType = any> = {
   Agencies?: AgenciesResolvers<ContextType>;
   Configuration?: ConfigurationResolvers<ContextType>;
+  Launch?: LaunchResolvers<ContextType>;
   LaunchServiceProvider?: LaunchServiceProviderResolvers<ContextType>;
   Location?: LocationResolvers<ContextType>;
   Mission?: MissionResolvers<ContextType>;
@@ -398,7 +399,6 @@ export type Resolvers<ContextType = any> = {
   Pad?: PadResolvers<ContextType>;
   Program?: ProgramResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
-  Results?: ResultsResolvers<ContextType>;
   Rocket?: RocketResolvers<ContextType>;
   Status?: StatusResolvers<ContextType>;
 };
@@ -407,7 +407,7 @@ export type Resolvers<ContextType = any> = {
 export type GetUpcomingLaunchesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUpcomingLaunchesQuery = { __typename?: 'Query', upcoming?: Array<{ __typename?: 'Results', id?: string | null, name?: string | null, failreason?: string | null, hashtag?: string | null, holdreason?: string | null, image?: string | null, inhold?: boolean | null, tbddate?: boolean | null, tbdtime?: boolean | null, url?: string | null, webcast_live?: boolean | null, window_end?: string | null, window_start?: string | null, probability?: number | null, launch_service_provider?: { __typename?: 'LaunchServiceProvider', id?: number | null, name?: string | null } | null, status?: { __typename?: 'Status', id?: number | null, abbrev?: string | null, name?: string | null, description?: string | null } | null, mission?: { __typename?: 'Mission', id?: number | null, description?: string | null } | null, program?: Array<{ __typename?: 'Program', id?: number | null, name?: string | null } | null> | null } | null> | null };
+export type GetUpcomingLaunchesQuery = { __typename?: 'Query', upcoming?: Array<{ __typename?: 'Launch', id?: string | null, name?: string | null, failreason?: string | null, hashtag?: string | null, holdreason?: string | null, image?: string | null, inhold?: boolean | null, tbddate?: boolean | null, tbdtime?: boolean | null, url?: string | null, webcast_live?: boolean | null, window_end?: string | null, window_start?: string | null, probability?: number | null, pad?: { __typename?: 'Pad', name?: string | null, latitude?: string | null, longitude?: string | null, location?: { __typename?: 'Location', name?: string | null } | null } | null, launch_service_provider?: { __typename?: 'LaunchServiceProvider', id?: number | null, name?: string | null } | null, status?: { __typename?: 'Status', id?: number | null, abbrev?: string | null, name?: string | null, description?: string | null } | null, mission?: { __typename?: 'Mission', id?: number | null, name?: string | null, description?: string | null } | null, program?: Array<{ __typename?: 'Program', id?: number | null, name?: string | null } | null> | null } | null> | null };
 
 
 export const GetUpcomingLaunchesDocument = gql`
@@ -427,6 +427,16 @@ export const GetUpcomingLaunchesDocument = gql`
     window_end
     window_start
     probability
+    tbddate
+    tbdtime
+    pad {
+      name
+      latitude
+      longitude
+      location {
+        name
+      }
+    }
     launch_service_provider {
       id
       name
@@ -439,6 +449,7 @@ export const GetUpcomingLaunchesDocument = gql`
     }
     mission {
       id
+      name
       description
     }
     program {
