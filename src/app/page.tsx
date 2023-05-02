@@ -6,6 +6,7 @@ import { REVALIDATE_API } from '@/lib/constants';
 
 export const getUpcomingLaunches = async () => {
   const client = getClient();
+  if (!client) return Promise.resolve({ data: null });
   return await client.query<GetUpcomingLaunchesQuery>({
     query: GetUpcomingLaunchesDocument,
     context: {

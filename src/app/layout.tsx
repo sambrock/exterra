@@ -22,7 +22,7 @@ export default async function RootLayout({ children, ...props }: { children: Rea
 
   if (segment === 'upcoming' || !segment) {
     const { data } = await getUpcomingLaunches();
-    launches = (data.upcoming as Launch[]) || [];
+    launches = (data?.upcoming as Launch[]) || [];
   }
 
   return (
