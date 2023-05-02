@@ -16,7 +16,7 @@ const sans = Chakra_Petch({
 export default async function RootLayout({ children, ...props }: { children: React.ReactNode }) {
   // @ts-expect-error
   // There is no Next api for this yet
-  const { segment } = children.props.childProp;
+  const { segment } = children.props?.childProp || '';
 
   let launches: Launch[] = [];
 
