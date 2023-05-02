@@ -5,14 +5,7 @@ import { LaunchItem } from '@/components/launch/LaunchItem';
 
 export default async function Home() {
   const client = getClient();
-  let data;
-
-  if (!client) {
-    data = null;
-  } else {
-    const response = await client.query<GetUpcomingLaunchesQuery>({ query: GetUpcomingLaunchesDocument });
-    data = response.data;
-  }
+  const { data } = await client.query<GetUpcomingLaunchesQuery>({ query: GetUpcomingLaunchesDocument });
 
   return (
     <main>
