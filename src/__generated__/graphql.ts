@@ -1,6 +1,6 @@
 import { GraphQLResolveInfo } from 'graphql';
 import { GraphQLClient } from 'graphql-request';
-import * as Dom from 'graphql-request/dist/types.dom';
+// import * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -467,7 +467,7 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    getUpcomingLaunches(variables?: GetUpcomingLaunchesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetUpcomingLaunchesQuery> {
+    getUpcomingLaunches(variables?: GetUpcomingLaunchesQueryVariables, requestHeaders?: any): Promise<GetUpcomingLaunchesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetUpcomingLaunchesQuery>(GetUpcomingLaunchesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUpcomingLaunches', 'query');
     }
   };
