@@ -1,10 +1,10 @@
 import { Chakra_Petch } from 'next/font/google';
 import { clsx } from 'clsx';
 import { Map } from '@/components/map/Map';
-import { getUpcomingLaunches } from './page';
 import type { Launch } from '@/__generated__/graphql';
 import '@/styles/global.css';
 import Head from './head';
+import { getUpcomingLaunches } from '@/lib/client';
 
 const sans = Chakra_Petch({
   weight: ['400', '700'],
@@ -13,7 +13,7 @@ const sans = Chakra_Petch({
   variable: '--font-sans',
 });
 
-export default async function RootLayout({ children, ...props }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { data } = await getUpcomingLaunches();
 
   return (
