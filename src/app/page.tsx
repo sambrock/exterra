@@ -17,7 +17,8 @@ export const getUpcomingLaunches = async () => {
 };
 
 export default async function Home() {
-  const { data } = await getUpcomingLaunches();
+  const client = getClient();
+  const { data } = await client.query<GetUpcomingLaunchesQuery>({ query: GetUpcomingLaunchesDocument });
 
   return (
     <main>

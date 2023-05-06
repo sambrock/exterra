@@ -1,5 +1,5 @@
 query getUpcomingLaunches {
-    upcoming {
+  upcoming {
     id
     name
     failreason
@@ -16,6 +16,11 @@ query getUpcomingLaunches {
     probability
     tbddate
     tbdtime
+    rocket {
+      configuration {
+        full_name
+      }
+    }
     pad {
       name
       latitude

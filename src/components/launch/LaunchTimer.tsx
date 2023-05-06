@@ -9,9 +9,9 @@ type LaunchTimerProps = {
   statusId: number | undefined | null;
   windowStart: string | undefined | null;
   windowEnd: string | undefined | null;
-};
+} & React.ComponentProps<'span'>;
 
-export const LaunchTimer = ({ statusId = 0, windowStart, windowEnd }: LaunchTimerProps) => {
+export const LaunchTimer = ({ statusId = 0, windowStart, windowEnd, ...props }: LaunchTimerProps) => {
   const [date, setDate] = useState(new Date(windowStart || windowEnd || ''));
 
   useInterval(() => {
@@ -39,14 +39,14 @@ export const LaunchTimer = ({ statusId = 0, windowStart, windowEnd }: LaunchTime
 
   if (statusId === 2 || statusId === 8) {
     return (
-      <span className="text-xs font-medium text-white/50">
+      <span {...props}>
         Est. {date.getDate()} {MONTHS[date.getMonth()] || ''} {date.getFullYear()}
       </span>
     );
   }
 
   return (
-    <span className="text-xs font-medium text-white/50" suppressHydrationWarning={true}>
+    <span {...props} suppressHydrationWarning={true}>
       {countdown().t}
     </span>
   );

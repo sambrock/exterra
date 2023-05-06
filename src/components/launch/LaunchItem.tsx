@@ -30,7 +30,12 @@ export const LaunchItem = ({ launch }: { launch: Launch }) => {
 
       <div className="mt-2 flex items-center gap-4">
         <LaunchStatus status={launch.status} />
-        <LaunchTimer statusId={launch.status?.id} windowStart={launch.window_start} windowEnd={launch.window_end} />
+        <LaunchTimer
+          className="text-xs text-white/50"
+          statusId={launch.status?.id}
+          windowStart={launch.window_start}
+          windowEnd={launch.window_end}
+        />
       </div>
     </li>
   );

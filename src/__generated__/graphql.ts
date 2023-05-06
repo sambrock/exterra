@@ -1,6 +1,6 @@
 import { GraphQLResolveInfo } from 'graphql';
 import { GraphQLClient } from 'graphql-request';
-// import * as Dom from 'graphql-request/dist/types.dom';
+import * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -407,7 +407,7 @@ export type Resolvers<ContextType = any> = {
 export type GetUpcomingLaunchesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUpcomingLaunchesQuery = { __typename?: 'Query', upcoming?: Array<{ __typename?: 'Launch', id?: string | null, name?: string | null, failreason?: string | null, hashtag?: string | null, holdreason?: string | null, image?: string | null, inhold?: boolean | null, tbddate?: boolean | null, tbdtime?: boolean | null, url?: string | null, webcast_live?: boolean | null, window_end?: string | null, window_start?: string | null, probability?: number | null, pad?: { __typename?: 'Pad', name?: string | null, latitude?: string | null, longitude?: string | null, location?: { __typename?: 'Location', name?: string | null } | null } | null, launch_service_provider?: { __typename?: 'LaunchServiceProvider', id?: number | null, name?: string | null } | null, status?: { __typename?: 'Status', id?: number | null, abbrev?: string | null, name?: string | null, description?: string | null } | null, mission?: { __typename?: 'Mission', id?: number | null, name?: string | null, description?: string | null } | null, program?: Array<{ __typename?: 'Program', id?: number | null, name?: string | null } | null> | null } | null> | null };
+export type GetUpcomingLaunchesQuery = { __typename?: 'Query', upcoming?: Array<{ __typename?: 'Launch', id?: string | null, name?: string | null, failreason?: string | null, hashtag?: string | null, holdreason?: string | null, image?: string | null, inhold?: boolean | null, tbddate?: boolean | null, tbdtime?: boolean | null, url?: string | null, webcast_live?: boolean | null, window_end?: string | null, window_start?: string | null, probability?: number | null, rocket?: { __typename?: 'Rocket', configuration?: { __typename?: 'Configuration', full_name?: string | null } | null } | null, pad?: { __typename?: 'Pad', name?: string | null, latitude?: string | null, longitude?: string | null, location?: { __typename?: 'Location', name?: string | null } | null } | null, launch_service_provider?: { __typename?: 'LaunchServiceProvider', id?: number | null, name?: string | null } | null, status?: { __typename?: 'Status', id?: number | null, abbrev?: string | null, name?: string | null, description?: string | null } | null, mission?: { __typename?: 'Mission', id?: number | null, name?: string | null, description?: string | null } | null, program?: Array<{ __typename?: 'Program', id?: number | null, name?: string | null } | null> | null } | null> | null };
 
 
 export const GetUpcomingLaunchesDocument = gql`
@@ -429,6 +429,11 @@ export const GetUpcomingLaunchesDocument = gql`
     probability
     tbddate
     tbdtime
+    rocket {
+      configuration {
+        full_name
+      }
+    }
     pad {
       name
       latitude
@@ -467,7 +472,7 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    getUpcomingLaunches(variables?: GetUpcomingLaunchesQueryVariables, requestHeaders?: any): Promise<GetUpcomingLaunchesQuery> {
+    getUpcomingLaunches(variables?: GetUpcomingLaunchesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetUpcomingLaunchesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetUpcomingLaunchesQuery>(GetUpcomingLaunchesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUpcomingLaunches', 'query');
     }
   };
