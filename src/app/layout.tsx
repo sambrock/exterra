@@ -22,8 +22,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <Head />
       <Analytics />
       <body className={clsx(sans.variable, 'relative h-screen w-screen bg-map-land font-sans text-white')}>
-        <div className="fixed left-8 top-8 z-[999] w-36">
-          <img src="/logo.svg" alt="logo" />
+        <div className="fixed left-8 top-8 z-[999] w-40">
+          <img src="/logo-3.svg" alt="logo" />
         </div>
         <div className="fixed left-0 top-0 h-screen w-screen">
           <Map launches={(data?.upcoming as Launch[]) || []} />
