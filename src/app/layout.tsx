@@ -1,5 +1,6 @@
 import { Chakra_Petch } from 'next/font/google';
 import { clsx } from 'clsx';
+import { Analytics } from '@vercel/analytics/react';
 import { Map } from '@/components/map/Map';
 import type { Launch } from '@/__generated__/graphql';
 import '@/styles/global.css';
@@ -19,7 +20,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en">
       <Head />
-
+      <Analytics />
       <body className={clsx(sans.variable, 'relative h-screen w-screen bg-map-land font-sans text-white')}>
         <div className="fixed left-8 top-8 z-[999] w-36">
           <img src="/logo.svg" alt="logo" />
