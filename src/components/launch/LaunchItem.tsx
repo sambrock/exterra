@@ -7,7 +7,7 @@ export const LaunchItem = ({ launch }: { launch: Launch }) => {
   return (
     <li
       className={clsx(
-        'border-l-2s group flex cursor-pointer flex-col rounded border border-y-white/5 border-r-white/5 bg-white/5 px-4 py-2 transition-all hover:bg-white/10',
+        'group flex cursor-pointer flex-col rounded border border-l-2 border-y-white/5 border-r-white/5 bg-white/5 px-4 py-2 hover:bg-white/10',
         {
           'border-l-status-go': launch.status?.id === 1,
           'border-l-white/50': launch.status?.id === 2 || launch.status?.id === 8,
@@ -29,7 +29,7 @@ export const LaunchItem = ({ launch }: { launch: Launch }) => {
       </div>
 
       <div className="mt-2 flex items-center gap-4">
-        <LaunchStatus status={launch.status} />
+        <LaunchStatus className="text-xs" status={launch.status} />
         <LaunchTimer
           className="text-xs text-white/50"
           statusId={launch.status?.id}

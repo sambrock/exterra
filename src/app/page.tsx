@@ -7,7 +7,7 @@ export default async function Home() {
 
   return (
     <main>
-      <div className="absolute right-2 top-1/2 max-w-lg -translate-y-1/2">
+      <div className="fixed right-0 top-0 h-screen max-w-lg overflow-y-scroll">
         <LaunchList>
           {data?.upcoming?.map((launch, index) => (
             <LaunchItem key={index} launch={launch || {}} />
