@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { clsx } from 'clsx';
 import type { Launch } from '@/__generated__/graphql';
 import { LaunchStatus } from './LaunchStatus';
@@ -18,25 +19,27 @@ export const LaunchItem = ({ launch }: { launch: Launch }) => {
         }
       )}
     >
-      <div className="overflow-hidden overflow-ellipsis whitespace-nowrap font-semibold text-white">
-        {launch.name?.replace('|', '—')}
-      </div>
+      <Link href={`/launch/${launch.id}`}>
+        <div className="overflow-hidden overflow-ellipsis whitespace-nowrap font-semibold text-white">
+          {launch.name?.replace('|', '—')}
+        </div>
 
-      <div className="mt-1 flex gap-2 text-xs font-medium text-white/50">
-        <span className="overflow-hidden overflow-ellipsis whitespace-nowrap">
-          {launch.launch_service_provider?.name}
-        </span>
-      </div>
+        <div className="mt-1 flex gap-2 text-xs font-medium text-white/50">
+          <span className="overflow-hidden overflow-ellipsis whitespace-nowrap">
+            {launch.launch_service_provider?.name}
+          </span>
+        </div>
 
-      <div className="mt-2 flex items-center gap-4">
-        <LaunchStatus className="text-xs" status={launch.status} />
-        <LaunchTimer
-          className="text-xs text-white/50"
-          statusId={launch.status?.id}
-          windowStart={launch.window_start}
-          windowEnd={launch.window_end}
-        />
-      </div>
+        <div className="mt-2 flex items-center gap-4">
+          <LaunchStatus className="text-xs" status={launch.status} />
+          <LaunchTimer
+            className="text-xs text-white/50"
+            statusId={launch.status?.id}
+            windowStart={launch.window_start}
+            windowEnd={launch.window_end}
+          />
+        </div>
+      </Link>
     </li>
   );
 };

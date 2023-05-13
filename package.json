@@ -20,7 +20,7 @@
     "graphql-request": "^6.0.0",
     "graphql-tag": "^2.12.6",
     "mapbox-gl": "^2.14.1",
-    "next": "^13.4.1",
+    "next": "^13.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-map-gl": "^7.0.23",
