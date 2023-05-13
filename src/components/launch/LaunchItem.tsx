@@ -4,7 +4,7 @@ import type { Launch } from '@/__generated__/graphql';
 import { LaunchStatus } from './LaunchStatus';
 import { LaunchTimer } from './LaunchTimer';
 
-export const LaunchItem = ({ launch }: { launch: Launch }) => {
+export const LaunchItem = ({ launch, href }: { launch: Launch; href: string }) => {
   return (
     <li
       className={clsx(
@@ -19,7 +19,7 @@ export const LaunchItem = ({ launch }: { launch: Launch }) => {
         }
       )}
     >
-      <Link href={`/launch/${launch.id}`}>
+      <Link href={href}>
         <div className="overflow-hidden overflow-ellipsis whitespace-nowrap font-semibold text-white">
           {launch.name?.replace('|', '—')}
         </div>
