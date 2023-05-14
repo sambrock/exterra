@@ -1,6 +1,12 @@
 import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 import { BASE_URL, REVALIDATE_API } from './constants';
-import { GetUpcomingLaunchesDocument, GetUpcomingLaunchesQuery } from '@/__generated__/graphql';
+import {
+  GetLaunchDocument,
+  GetLaunchQuery,
+  GetLaunchQueryVariables,
+  GetUpcomingLaunchesDocument,
+  GetUpcomingLaunchesQuery,
+} from '@/__generated__/graphql';
 
 let client: ApolloClient<any> | null = null;
 
@@ -23,6 +29,19 @@ export const getUpcomingLaunches = async () => {
   const client = getClient();
   return await client.query<GetUpcomingLaunchesQuery>({
     query: GetUpcomingLaunchesDocument,
+    context: {
+      fetchOptions: {
+        next: { revalidate: REVALIDATE_API },
+      },
+    },
+  });
+};
+
+export const getLaunch = async (variables: GetLaunchQueryVariables) => {
+  const client = getClient();
+  return await client.query<GetLaunchQuery>({
+    query: GetLaunchDocument,
+    variables,
     context: {
       fetchOptions: {
         next: { revalidate: REVALIDATE_API },

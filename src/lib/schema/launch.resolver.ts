@@ -6,5 +6,12 @@ export const launchResolver = {
 
       return data.results;
     },
+
+    launch: async (_: unknown, { id }: { id: string }) => {
+      const response = await fetch(process.env.LL2_API_URL + '/launch/' + id);
+      const data = await response.json();
+
+      return data;
+    },
   },
 };

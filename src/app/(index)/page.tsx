@@ -5,5 +5,9 @@ import { getUpcomingLaunches } from '@/lib/client';
 export default async function IndexPage() {
   const { data } = await getUpcomingLaunches();
 
-  return <Map launches={(data?.upcoming || []) as Launch[]} />;
+  return (
+    <div className="fixed left-0 top-0 h-screen w-screen">
+      <Map launches={(data?.upcoming || []) as Launch[]} />
+    </div>
+  );
 }

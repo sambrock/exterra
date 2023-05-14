@@ -17,7 +17,7 @@ export default async function RootLayout(props: { children: React.ReactNode; lau
     <html lang="en">
       <Head />
       <Analytics />
-      <body className={clsx(sans.variable, 'relative bg-map-land font-sans text-white')}>
+      <body className={clsx(sans.variable, 'relative bg-map-water font-sans text-white')}>
         <div className="fixed left-8 top-8 z-[999] w-32">
           <img src="/logo.svg" alt="logo" />
         </div>

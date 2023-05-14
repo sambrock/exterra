@@ -1,3 +1,12 @@
+import { Launch } from '@/__generated__/graphql';
+import { LaunchDetails } from '@/components/launch/LaunchDetails/LaunchDetails';
+import { getLaunch } from '@/lib/client';
+
 export default async function LaunchPage({ params }: { params: { id: string } }) {
-  return <h1 className="block absolute left-2 top-2 bg-red-500 z-[99999]">Launch details: {params.id}</h1>;
+  const { data } = await getLaunch(params);
+  return (
+    <div className="py-20 mx-auto">
+      <LaunchDetails launch={data.launch as Launch} />
+    </div>
+  );
 }

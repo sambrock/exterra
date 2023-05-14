@@ -8,7 +8,7 @@ export default async function LaunchesPage() {
   return (
     <LaunchList>
       {data?.upcoming?.map((launch, index) => (
-        <LaunchItem key={index} launch={launch || {}} />
+        <LaunchItem href={`/launches/${launch?.id}`} key={index} launch={launch || {}} />
       ))}
     </LaunchList>
   );

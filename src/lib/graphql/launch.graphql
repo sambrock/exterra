@@ -50,3 +50,75 @@ query getUpcomingLaunches {
     }
   }
 }
+
+query getLaunch($id: String!) {
+  launch(id: $id) {
+    id
+    name
+    failreason
+    hashtag
+    inhold
+    net
+    probability
+    image
+    tbddate
+    tbdtime
+    url
+    window_end
+    window_start
+    mission {
+      name
+      description
+      launch_designator
+      type
+      orbit {
+        name
+        abbrev
+      }
+    }
+    launch_service_provider {
+      name
+      type
+      description
+      logo_url
+      founding_year
+      attempted_landings
+      consecutive_successful_landings
+      consecutive_successful_launches
+      failed_landings
+      failed_launches
+      launchers
+      url
+      wiki_url
+      successful_landings
+      successful_launches
+      total_launch_count
+      country_code
+    }
+    pad {
+      info_url
+      location {
+        name
+        country_code
+        url
+      }
+    }
+    rocket {
+      configuration {
+        full_name
+        name
+        variant
+        family
+        launch_mass
+        length
+        maiden_flight
+      }
+    }
+    status {
+      id
+      name
+      description
+      abbrev
+    }
+  }
+}
