@@ -112,6 +112,9 @@ query getLaunch($id: String!) {
         launch_mass
         length
         maiden_flight
+        manufacturer {
+          type
+        }
       }
     }
     status {

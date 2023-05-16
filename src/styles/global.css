@@ -39,3 +39,7 @@
 .debug {
   border: 1px solid red;
 }
+
+.mapboxgl-canvas:focus {
+  outline: none;
+}

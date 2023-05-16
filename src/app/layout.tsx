@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/react';
 
 import Head from './head';
 import '@/styles/global.css';
+import Link from 'next/link';
 
 const sans = Chakra_Petch({
   weight: ['400', '500', '600', '700'],
@@ -18,9 +19,11 @@ export default async function RootLayout(props: { children: React.ReactNode; lau
       <Head />
       <Analytics />
       <body className={clsx(sans.variable, 'relative bg-map-water font-sans text-white')}>
-        <div className="fixed left-8 top-8 z-[999] w-32">
-          <img src="/logo.svg" alt="logo" />
-        </div>
+        <Link href="/">
+          <div className="fixed left-8 top-8 z-[999] w-32">
+            <img src="/logo.svg" alt="logo" />
+          </div>
+        </Link>
         {props.children}
       </body>
     </html>

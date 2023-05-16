@@ -1,6 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
 import { GraphQLClient } from 'graphql-request';
-// import * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -605,7 +604,7 @@ export type GetLaunchQueryVariables = Exact<{
 }>;
 
 
-export type GetLaunchQuery = { __typename?: 'Query', launch?: { __typename?: 'Launch', id?: string | null, name?: string | null, failreason?: string | null, hashtag?: string | null, inhold?: boolean | null, net?: string | null, probability?: string | null, image?: string | null, tbddate?: boolean | null, tbdtime?: boolean | null, url?: string | null, window_end?: string | null, window_start?: string | null, mission?: { __typename?: 'Mission', name?: string | null, description?: string | null, launch_designator?: string | null, type?: string | null, orbit?: { __typename?: 'Orbit', name?: string | null, abbrev?: string | null } | null } | null, launch_service_provider?: { __typename?: 'LaunchServiceProvider', name?: string | null, type?: string | null, description?: string | null, logo_url?: string | null, founding_year?: string | null, attempted_landings?: number | null, consecutive_successful_landings?: number | null, consecutive_successful_launches?: number | null, failed_landings?: number | null, failed_launches?: number | null, launchers?: string | null, url?: string | null, wiki_url?: string | null, successful_landings?: number | null, successful_launches?: number | null, total_launch_count?: number | null, country_code?: string | null } | null, pad?: { __typename?: 'Pad', info_url?: string | null, location?: { __typename?: 'Location', name?: string | null, country_code?: string | null, url?: string | null } | null } | null, rocket?: { __typename?: 'Rocket', configuration?: { __typename?: 'Configuration', full_name?: string | null, name?: string | null, variant?: string | null, family?: string | null, launch_mass?: number | null, length?: number | null, maiden_flight?: string | null } | null } | null, status?: { __typename?: 'Status', id?: number | null, name?: string | null, description?: string | null, abbrev?: string | null } | null } | null };
+export type GetLaunchQuery = { __typename?: 'Query', launch?: { __typename?: 'Launch', id?: string | null, name?: string | null, failreason?: string | null, hashtag?: string | null, inhold?: boolean | null, net?: string | null, probability?: string | null, image?: string | null, tbddate?: boolean | null, tbdtime?: boolean | null, url?: string | null, window_end?: string | null, window_start?: string | null, mission?: { __typename?: 'Mission', name?: string | null, description?: string | null, launch_designator?: string | null, type?: string | null, orbit?: { __typename?: 'Orbit', name?: string | null, abbrev?: string | null } | null } | null, launch_service_provider?: { __typename?: 'LaunchServiceProvider', name?: string | null, type?: string | null, description?: string | null, logo_url?: string | null, founding_year?: string | null, attempted_landings?: number | null, consecutive_successful_landings?: number | null, consecutive_successful_launches?: number | null, failed_landings?: number | null, failed_launches?: number | null, launchers?: string | null, url?: string | null, wiki_url?: string | null, successful_landings?: number | null, successful_launches?: number | null, total_launch_count?: number | null, country_code?: string | null } | null, pad?: { __typename?: 'Pad', info_url?: string | null, location?: { __typename?: 'Location', name?: string | null, country_code?: string | null, url?: string | null } | null } | null, rocket?: { __typename?: 'Rocket', configuration?: { __typename?: 'Configuration', full_name?: string | null, name?: string | null, variant?: string | null, family?: string | null, launch_mass?: number | null, length?: number | null, maiden_flight?: string | null, manufacturer?: { __typename?: 'Manufacturer', type?: string | null } | null } | null } | null, status?: { __typename?: 'Status', id?: number | null, name?: string | null, description?: string | null, abbrev?: string | null } | null } | null };
 
 
 export const GetUpcomingLaunchesDocument = gql`
@@ -724,6 +723,9 @@ export const GetLaunchDocument = gql`
         launch_mass
         length
         maiden_flight
+        manufacturer {
+          type
+        }
       }
     }
     status {

@@ -3,7 +3,7 @@ import { LaunchDetails } from '@/components/launch/LaunchDetails/LaunchDetails';
 import { getLaunch } from '@/lib/client';
 
 export default async function LaunchPanel({ params }: { params: { id: string } }) {
-  const { data } = await getLaunch(params);
+  const { data } = await getLaunch(params.id);
 
   return (
     <div className="min-h-screen bg-black/40 py-20 backdrop-blur-lg">
